@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class HelloController {
+public class GameController extends Controller{
     @FXML
     private Label welcomeText;
     public HBox CustomerBox;
