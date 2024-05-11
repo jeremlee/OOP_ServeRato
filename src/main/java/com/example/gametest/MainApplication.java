@@ -12,8 +12,10 @@ import java.sql.*;
 
 public class MainApplication extends Application {
     public static float HEIGHT, WIDTH;
+    static Stage myOnlyStage;
     @Override
     public void start(Stage stage) throws IOException {
+        myOnlyStage = stage;
         String createStatement = "CREATE TABLE IF NOT EXISTS tbluser ("
                 + "uid INT AUTO_INCREMENT PRIMARY KEY,"
                 + "username VARCHAR(255) NOT NULL,"
@@ -25,10 +27,8 @@ public class MainApplication extends Application {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        HEIGHT = 1200f;
-        WIDTH = 800f;
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login_register.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), HEIGHT, WIDTH);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Serverato");
         stage.setScene(scene);
         stage.show();

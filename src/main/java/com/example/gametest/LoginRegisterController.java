@@ -2,15 +2,22 @@ package com.example.gametest;
 
 import com.example.utils.MySQLConnection;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static com.example.gametest.MainApplication.myOnlyStage;
 
 public class LoginRegisterController extends Controller {
     public Button btnLogin;
@@ -65,6 +72,16 @@ public class LoginRegisterController extends Controller {
             lblErrorMsg.setText("");
             System.out.println(USER);
             //mo-adto nis lain scene
+
+            try{
+                Parent p = FXMLLoader.load(getClass().getResource("game.fxml")); //throws IOException
+                Scene s = new Scene(p);
+                myOnlyStage.setScene(s);
+                myOnlyStage.show();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+
         } else{
             lblErrorMsg.setText("Incorrect username/password!");
         }
