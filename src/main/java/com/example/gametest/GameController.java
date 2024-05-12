@@ -21,6 +21,7 @@ public class GameController extends Controller{
     public GridPane CustomerBox;
 
     private CustomerHandler customerHandler = new CustomerHandler();
+    private Timer[] customerTimer = new Timer[customerHandler.capacity]; //need to keep track of timers to cancel timers
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
@@ -32,12 +33,19 @@ public class GameController extends Controller{
             return;
         }
 
-
         VBox customerContainer = new VBox();
+        Button customerSatisfied = new Button("Ordered");
 
         //Making Progress Bar for Patience
         ProgressBar customerPatienceBar = new ProgressBar(1);
         customerContainer.getChildren().add(customerPatienceBar);
+
+        customerSatisfied.setOnAction(new EventHandler<ActionEvent>(){ //proof of concept: customer can be removed anytime
+            public void handle(ActionEvent actionEvent) {
+                Platform.runLater(() -> RemoveCustomerContainer(customerContainer));
+            }
+        });
+        customerContainer.getChildren().add(customerSatisfied);
 
         //TODO: Import Image of Customer
 
@@ -46,7 +54,6 @@ public class GameController extends Controller{
         //have some function to make patience decrease faster based on customer patience
         int startDelay = 5000; // delay for 0 sec.
         int period = 1000; // repeat every sec.
-        int count = 0;
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask()
         {
@@ -60,21 +67,21 @@ public class GameController extends Controller{
                         setValue = PatientValue-CustomerPatience;
                     }
 
-
                     customerPatienceBar.setProgress(setValue);
                 }else{
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            customerHandler.removeCustomer(CustomerBox.getColumnIndex(customerContainer));
-                            CustomerBox.getChildren().remove(customerContainer);
-                        }
-                    });
-                    timer.cancel();
+                    Platform.runLater(() -> RemoveCustomerContainer(customerContainer));
                 }
             }
         }, startDelay, period);
 
         CustomerBox.add(customerContainer, customerHandler.recentSeat, 0);
+        customerTimer[customerHandler.recentSeat] = timer;
+    }
+
+    public void RemoveCustomerContainer(VBox customerContainer){
+        int columnIndex = CustomerBox.getColumnIndex(customerContainer);
+        customerHandler.removeCustomer(columnIndex);
+        CustomerBox.getChildren().remove(customerContainer);
+        customerTimer[columnIndex].cancel();
     }
 }
