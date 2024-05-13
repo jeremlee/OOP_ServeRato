@@ -12,10 +12,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import static com.example.gametest.MainApplication.myOnlyStage;
 
@@ -72,16 +74,8 @@ public class LoginRegisterController extends Controller {
             lblErrorMsg.setText("");
             System.out.println(USER);
             //mo-adto nis lain scene
-
-            try{
-                Parent p = FXMLLoader.load(getClass().getResource("game.fxml")); //throws IOException
-                Scene s = new Scene(p);
-                myOnlyStage.setScene(s);
-                myOnlyStage.show();
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-
+            String fxmlFile = "game.fxml";
+            switchScene(fxmlFile);
         } else{
             lblErrorMsg.setText("Incorrect username/password!");
         }
@@ -91,4 +85,20 @@ public class LoginRegisterController extends Controller {
         insertData(txtfUsername.getText(), txtfPassword.getText());
     }
 
+    @Override
+    public void switchScene(String fxmlFile) {
+        try{
+            Parent p = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Scene s = new Scene(p);
+            myOnlyStage.setScene(s);
+            myOnlyStage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

@@ -1,16 +1,27 @@
 package com.example.gametest;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
+import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.Random;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,6 +30,7 @@ public class GameController extends Controller{
     private Label welcomeText;
     public Button newCustomer;
     public GridPane CustomerBox;
+    private Timeline timeline;
 
     private CustomerHandler customerHandler = new CustomerHandler();
     private Timer[] customerTimer = new Timer[customerHandler.capacity]; //need to keep track of timers to cancel timers
@@ -28,8 +40,9 @@ public class GameController extends Controller{
     }
 
     //this method will be called by application when creating new customer
-    public void AddCustomer(){
-        if(!customerHandler.addCustomer()){ //if puno na, dli mo add
+    public void AddCustomer() throws FileNotFoundException {
+        Image image = customerHandler.addCustomer();
+        if(image == null){ //if puno na, dli mo add
             return;
         }
 
@@ -38,7 +51,9 @@ public class GameController extends Controller{
 
         //Making Progress Bar for Patience
         ProgressBar customerPatienceBar = new ProgressBar(1);
+        ImageView img = new ImageView(image);
         customerContainer.getChildren().add(customerPatienceBar);
+        customerContainer.getChildren().add(img);
 
         customerSatisfied.setOnAction(new EventHandler<ActionEvent>(){ //proof of concept: customer can be removed anytime
             public void handle(ActionEvent actionEvent) {
@@ -83,5 +98,26 @@ public class GameController extends Controller{
         customerHandler.removeCustomer(columnIndex);
         CustomerBox.getChildren().remove(customerContainer);
         customerTimer[columnIndex].cancel();
+    }
+
+    @Override
+    public void switchScene(String fxmlFile) {
+        stopTimeline();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(new Random().nextDouble(7)+3), event -> {
+            try {
+                AddCustomer();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+    public void stopTimeline(){
+        timeline.stop();
     }
 }

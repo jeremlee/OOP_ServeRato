@@ -1,5 +1,8 @@
 package com.example.gametest;
 
+import javafx.scene.image.Image;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -18,20 +21,20 @@ public class CustomerHandler {
         Arrays.fill(isEmpty, true);
     }
 
-    public boolean addCustomer(){ //returns true, if there is still seats. otherwise false
+    public Image addCustomer() throws FileNotFoundException { //returns true, if there is still seats. otherwise false
         if(Customers.size() == capacity){
             System.out.println("Puno na");
-            return false;
+            return null;
         }
 
         String name =  "Customer";
         int seat = checkSeat();
-        Customer newCustomer = new Customer(name+ id, seat);
+        Customer newCustomer = new Customer(name+ id, seat,"src/main/resources/Images/lowresOsaker.png");
         Customers.add(newCustomer);
         recentSeat = seat;
         id++;
         printCustomers();
-        return true;
+        return newCustomer.image;
     }
 
     public void removeCustomer(int seat){
