@@ -2,6 +2,7 @@ package com.example.gametest;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,9 +16,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Random;
@@ -27,18 +32,16 @@ import java.util.TimerTask;
 
 public class GameController extends Controller{
     @FXML
-    private Label welcomeText;
+
     public Button newCustomer;
     public GridPane CustomerBox;
+    public Pane pnFood;
+    public ImageView btnFood1;
     private Timeline timeline;
+    private MediaPlayer mediaPlayer;
 
     private CustomerHandler customerHandler = new CustomerHandler();
     private Timer[] customerTimer = new Timer[customerHandler.capacity]; //need to keep track of timers to cancel timers
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-
     //this method will be called by application when creating new customer
     public void AddCustomer() throws FileNotFoundException {
         Image image = customerHandler.addCustomer();
@@ -52,6 +55,7 @@ public class GameController extends Controller{
         //Making Progress Bar for Patience
         ProgressBar customerPatienceBar = new ProgressBar(1);
         ImageView img = new ImageView(image);
+
         customerContainer.getChildren().add(customerPatienceBar);
         customerContainer.getChildren().add(img);
 
@@ -100,13 +104,27 @@ public class GameController extends Controller{
         customerTimer[columnIndex].cancel();
     }
 
+    public void addSpaghetti() throws FileNotFoundException {
+        Spaghetti spag = new Spaghetti();
+        ImageView img = new ImageView(spag.img);
+        img.setFitWidth(50);
+        img.setFitHeight(50);
+        pnFood.getChildren().add(img);
+    }
+
     @Override
     public void switchScene(String fxmlFile) {
-        stopTimeline();
+        timeline.stop();
+        mediaPlayer.stop();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String path = "src/main/resources/Music/bgm.mp3";
+        Media sound = new Media(new File(path).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
         timeline = new Timeline(new KeyFrame(Duration.seconds(new Random().nextDouble(7)+3), event -> {
             try {
                 AddCustomer();
@@ -117,7 +135,5 @@ public class GameController extends Controller{
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
-    public void stopTimeline(){
-        timeline.stop();
-    }
+
 }

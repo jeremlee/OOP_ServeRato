@@ -86,18 +86,6 @@ public class LoginRegisterController extends Controller {
     }
 
     @Override
-    public void switchScene(String fxmlFile) {
-        try{
-            Parent p = FXMLLoader.load(getClass().getResource(fxmlFile));
-            Scene s = new Scene(p);
-            myOnlyStage.setScene(s);
-            myOnlyStage.show();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }

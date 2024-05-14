@@ -27,7 +27,7 @@ public class MainApplication extends Application {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login_register.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("splash_screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Serverato");
         stage.setScene(scene);

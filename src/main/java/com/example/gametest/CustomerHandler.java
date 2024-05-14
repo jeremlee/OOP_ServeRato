@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+
 public class CustomerHandler {
+
+
     ArrayList<Customer> Customers;
     boolean[] isEmpty;
     int id = 0; //para unique ang customername...idk
@@ -26,10 +29,24 @@ public class CustomerHandler {
             System.out.println("Puno na");
             return null;
         }
-
-        String name =  "Customer";
+        Customer newCustomer;
+        Random random = new Random();
+        int num = random.nextInt(3);
         int seat = checkSeat();
-        Customer newCustomer = new Customer(name+ id, seat,"src/main/resources/Images/lowresOsaker.png");
+        switch(num){
+            case 0:
+                newCustomer = new KevinCustomer(seat);
+                break;
+            case 1:
+                newCustomer = new SeratoCustomer(seat);
+                break;
+            case 2:
+                newCustomer = new JeremyCustomer(seat);
+                break;
+            default:
+                newCustomer = new Customer("Who?",seat,"src/main/resources/Images/lowresOsaker.png");
+                break;
+        }
         Customers.add(newCustomer);
         recentSeat = seat;
         id++;

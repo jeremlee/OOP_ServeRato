@@ -18,11 +18,6 @@ public class Customer {
         this.seatNumber = seat;
         image = new Image(new FileInputStream(imgPath));
     }
-    Customer(String name, int seat){
-        this.name = name;
-        this.Patience = 1;
-        this.seatNumber = seat;
-    }
 
     @Override
     public String toString() {
