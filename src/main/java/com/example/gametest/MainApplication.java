@@ -15,7 +15,11 @@ public class MainApplication extends Application {
     static Stage myOnlyStage;
     @Override
     public void start(Stage stage) throws IOException {
+        HEIGHT = 800;
+        WIDTH = 1200;
         myOnlyStage = stage;
+        myOnlyStage.setWidth(1200);
+        myOnlyStage.setHeight(800);
         String createStatement = "CREATE TABLE IF NOT EXISTS tbluser ("
                 + "uid INT AUTO_INCREMENT PRIMARY KEY,"
                 + "username VARCHAR(255) NOT NULL,"
