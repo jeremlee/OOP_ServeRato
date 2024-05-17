@@ -9,8 +9,6 @@ import java.util.Random;
 
 
 public class CustomerHandler {
-
-
     static ArrayList<Customer> Customers;
     static boolean[] isEmpty;
     int id = 0; //para unique ang customername...idk
@@ -54,16 +52,28 @@ public class CustomerHandler {
         return newCustomer;
     }
 
-    public void removeCustomer(int seat){
-        int index = 0;
-        for(Customer c : Customers){
+    public Customer getCustomerAtSeat(int seat){
+        Customer seatedCustomer = null;
+
+        for(Customer c: Customers){
             if(c.seatNumber == seat){
+                seatedCustomer = seatedCustomer;
                 break;
             }
-            index++;
+        }
+
+        return seatedCustomer;
+    }
+
+    public void removeCustomer(int seat){
+        for(Customer c : Customers){
+            System.out.println("test");
+            if(c.seatNumber == seat){
+                Customers.remove(c);
+                break;
+            }
         }
         isEmpty[seat] = true;
-        Customers.remove(index);
         printCustomers();
     }
 

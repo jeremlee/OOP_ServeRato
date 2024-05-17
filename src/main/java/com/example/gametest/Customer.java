@@ -21,6 +21,10 @@ public class Customer {
         image = new Image(new FileInputStream(imgPath));
     }
 
+    public int getKey() {
+        return key;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +

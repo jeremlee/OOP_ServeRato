@@ -1,17 +1,20 @@
 package com.example.gametest;
 
+import com.example.GameObjects.Pasta;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 //import javafx.scene.media.Media;
@@ -34,12 +37,13 @@ public class GameController extends Controller{
     private Timeline timeline;
     //private MediaPlayer mediaPlayer;
 
-
     private CustomerHandler customerHandler = new CustomerHandler();
     private Timer[] customerTimer = new Timer[customerHandler.capacity]; //need to keep track of timers to cancel timers
+
     //this method will be called by application when creating new customer
     public void AddCustomer() throws FileNotFoundException {
         Customer customer = customerHandler.addCustomer();
+        int seat = customerHandler.recentSeat;
         if(customer == null){ //if puno na, dli mo add
             return;
         }
@@ -65,7 +69,7 @@ public class GameController extends Controller{
 
         customerSatisfied.setOnAction(new EventHandler<ActionEvent>(){ //proof of concept: customer can be removed anytime
             public void handle(ActionEvent actionEvent) {
-                Platform.runLater(() -> RemoveCustomerContainer(customerContainer));
+                Platform.runLater(() -> RemoveCustomerContainer(seat));
             }
         });
         customerContainer.getChildren().add(customerSatisfied);
@@ -92,7 +96,7 @@ public class GameController extends Controller{
 
                     customerPatienceBar.setProgress(setValue);
                 }else{
-                    Platform.runLater(() -> RemoveCustomerContainer(customerContainer));
+                    Platform.runLater(() -> RemoveCustomerContainer(seat));
                 }
             }
         }, startDelay, period);
@@ -101,37 +105,40 @@ public class GameController extends Controller{
         customerTimer[customerHandler.recentSeat] = timer;
     }
 
-    public void RemoveCustomerContainer(VBox customerContainer){
-        int columnIndex = CustomerBox.getColumnIndex(customerContainer);
+    public void RemoveCustomerContainer(int columnIndex){
         customerHandler.removeCustomer(columnIndex);
-        CustomerBox.getChildren().remove(customerContainer);
+        ObservableList<Node> childrens = CustomerBox.getChildren();
+        for(Node node : childrens) {
+            if(node instanceof VBox && CustomerBox.getRowIndex(node) == 0 && CustomerBox.getColumnIndex(node) == columnIndex) {
+                VBox container = (VBox) node; // use what you want to remove
+                CustomerBox.getChildren().remove(container);
+                break;
+            }
+        }
         customerTimer[columnIndex].cancel();
     }
 
     public void addSpaghetti() throws FileNotFoundException {
-        Spaghetti spag = new Spaghetti();
-        ImageView img = new ImageView(spag.img);
-        img.setFitWidth(50);
-        img.setFitHeight(50);
-        pnFood.getChildren().add(img);
-        moveTimeline(img);
+        Pasta spag = new Pasta();
+        pnFood.getChildren().add(spag.getPastaStack());
+        moveTimeline(spag.getPastaStack());
     }
-    private void moveTimeline(ImageView img) {
+
+    private void moveTimeline(StackPane img) {
         int seatsize = 147;
         Timeline spaghettiTimeline = new Timeline(new KeyFrame(Duration.millis(10), e -> {
             img.setLayoutX(img.getLayoutX() + 1);
 
-
-
             if (img.getBoundsInParent().getMaxX() >= pnFood.getWidth()) {
                 img.setLayoutX(0);
-//
             }
 
             int i = (int) img.getLayoutX()/seatsize;
-            if(!customerHandler.isEmpty[i]){ //check pizza
+            if(!customerHandler.isEmpty[i] ){ //I need food id && (customerHandler.getCustomerAtSeat(i).getKey() == )
                 pnFood.getChildren().remove(img);
                 ( (Timeline) img.getProperties().get("timeline")).stop();
+                Platform.runLater(() -> RemoveCustomerContainer(i));
+
             }
 
         }));
