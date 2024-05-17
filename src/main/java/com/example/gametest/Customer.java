@@ -11,11 +11,13 @@ public class Customer {
     int Patience;
     int seatNumber;
     Image image;
+    int key;
 
-    Customer(String name, int seat, String imgPath) throws FileNotFoundException {
+    Customer(String name, int seat, String imgPath, int key) throws FileNotFoundException {
         this.name = name;
         this.Patience = 1;
         this.seatNumber = seat;
+        this.key = key;
         image = new Image(new FileInputStream(imgPath));
     }
 

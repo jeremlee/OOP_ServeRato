@@ -8,8 +8,10 @@ import java.io.FileNotFoundException;
 public class Food {
     String name;
     Image img;
-    Food(String name, String path) throws FileNotFoundException {
+    int key;
+    Food(String name, String path, int key) throws FileNotFoundException {
         this.name = name;
         img = new Image(new FileInputStream(path));
+        this.key = key;
     }
 }

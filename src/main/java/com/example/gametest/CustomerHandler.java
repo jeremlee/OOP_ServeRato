@@ -11,8 +11,8 @@ import java.util.Random;
 public class CustomerHandler {
 
 
-    ArrayList<Customer> Customers;
-    boolean[] isEmpty;
+    static ArrayList<Customer> Customers;
+    static boolean[] isEmpty;
     int id = 0; //para unique ang customername...idk
     int recentSeat;
     int capacity;
@@ -24,7 +24,7 @@ public class CustomerHandler {
         Arrays.fill(isEmpty, true);
     }
 
-    public Image addCustomer() throws FileNotFoundException { //returns true, if there is still seats. otherwise false
+    public Customer addCustomer() throws FileNotFoundException { //returns true, if there is still seats. otherwise false
         if(Customers.size() == capacity){
             System.out.println("Puno na");
             return null;
@@ -44,14 +44,14 @@ public class CustomerHandler {
                 newCustomer = new JeremyCustomer(seat);
                 break;
             default:
-                newCustomer = new Customer("Who?",seat,"src/main/resources/Images/lowresOsaker.png");
+                newCustomer = new Customer("Who?",seat,"src/main/resources/Images/lowresOsaker.png",4);
                 break;
         }
         Customers.add(newCustomer);
         recentSeat = seat;
         id++;
         printCustomers();
-        return newCustomer.image;
+        return newCustomer;
     }
 
     public void removeCustomer(int seat){

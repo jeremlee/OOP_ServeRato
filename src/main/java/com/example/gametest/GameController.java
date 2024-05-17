@@ -39,8 +39,8 @@ public class GameController extends Controller{
     private Timer[] customerTimer = new Timer[customerHandler.capacity]; //need to keep track of timers to cancel timers
     //this method will be called by application when creating new customer
     public void AddCustomer() throws FileNotFoundException {
-        Image image = customerHandler.addCustomer();
-        if(image == null){ //if puno na, dli mo add
+        Customer customer = customerHandler.addCustomer();
+        if(customer == null){ //if puno na, dli mo add
             return;
         }
 
@@ -49,8 +49,16 @@ public class GameController extends Controller{
 
         //Making Progress Bar for Patience
         ProgressBar customerPatienceBar = new ProgressBar(1);
-        ImageView img = new ImageView(image);
-
+        ImageView img = new ImageView(customer.image);
+        if(customer instanceof JeremyCustomer){
+            img.getProperties().put("CustomerType","Jeremy");
+        }
+        if(customer instanceof KevinCustomer){
+            img.getProperties().put("CustomerType","Kevin");
+        }
+        if(customer instanceof SeratoCustomer){
+            img.getProperties().put("CustomerType","Serato");
+        }
 
         customerContainer.getChildren().add(customerPatienceBar);
         customerContainer.getChildren().add(img);
@@ -109,12 +117,23 @@ public class GameController extends Controller{
         moveTimeline(img);
     }
     private void moveTimeline(ImageView img) {
+        int seatsize = 147;
         Timeline spaghettiTimeline = new Timeline(new KeyFrame(Duration.millis(10), e -> {
             img.setLayoutX(img.getLayoutX() + 1);
+
+
+
             if (img.getBoundsInParent().getMaxX() >= pnFood.getWidth()) {
-                pnFood.getChildren().remove(img);
-                ((Timeline) img.getProperties().get("timeline")).stop();
+                img.setLayoutX(0);
+//
             }
+
+            int i = (int) img.getLayoutX()/seatsize;
+            if(!customerHandler.isEmpty[i]){ //check pizza
+                pnFood.getChildren().remove(img);
+                ( (Timeline) img.getProperties().get("timeline")).stop();
+            }
+
         }));
         spaghettiTimeline.setCycleCount(Timeline.INDEFINITE);
         spaghettiTimeline.play();
