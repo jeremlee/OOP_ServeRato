@@ -22,10 +22,7 @@ import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.Random;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class GameController extends Controller{
     @FXML
@@ -119,24 +116,25 @@ public class GameController extends Controller{
     }
 
     public void addSpaghetti() throws FileNotFoundException {
-        Pasta spag = new Pasta();
+        Pasta spag = new Pasta.PastaBuilder(50).setBase(1).setSauce(1).setTopping(1).build();;
         pnFood.getChildren().add(spag.getPastaStack());
-        moveTimeline(spag.getPastaStack());
+        moveTimeline(spag);
     }
 
-    private void moveTimeline(StackPane img) {
+    private void moveTimeline(Pasta p) {
         int seatsize = 147;
+        StackPane curSpag = p.getPastaStack();
         Timeline spaghettiTimeline = new Timeline(new KeyFrame(Duration.millis(10), e -> {
-            img.setLayoutX(img.getLayoutX() + 1);
+            curSpag.setLayoutX(curSpag.getLayoutX() + 1);
 
-            if (img.getBoundsInParent().getMaxX() >= pnFood.getWidth()) {
-                img.setLayoutX(0);
+            if (curSpag.getBoundsInParent().getMaxX() >= pnFood.getWidth()) {
+                curSpag.setLayoutX(0);
             }
 
-            int i = (int) img.getLayoutX()/seatsize;
-            if(!customerHandler.isEmpty[i] ){ //I need food id && (customerHandler.getCustomerAtSeat(i).getKey() == )
-                pnFood.getChildren().remove(img);
-                ( (Timeline) img.getProperties().get("timeline")).stop();
+            int i = (int) curSpag.getLayoutX()/seatsize;
+            if(!customerHandler.isEmpty[i] && (customerHandler.getCustomerAtSeat(i).getKey() == p.getKey())){ //I need food id && (customerHandler.getCustomerAtSeat(i).getKey() == )
+                pnFood.getChildren().remove(curSpag);
+                ( (Timeline) curSpag.getProperties().get("timeline")).stop();
                 Platform.runLater(() -> RemoveCustomerContainer(i));
 
             }
@@ -144,7 +142,7 @@ public class GameController extends Controller{
         }));
         spaghettiTimeline.setCycleCount(Timeline.INDEFINITE);
         spaghettiTimeline.play();
-        img.getProperties().put("timeline", spaghettiTimeline);
+        curSpag.getProperties().put("timeline", spaghettiTimeline);
     }
 
     @Override

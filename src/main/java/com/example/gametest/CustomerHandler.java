@@ -57,7 +57,7 @@ public class CustomerHandler {
 
         for(Customer c: Customers){
             if(c.seatNumber == seat){
-                seatedCustomer = seatedCustomer;
+                seatedCustomer = c;
                 break;
             }
         }

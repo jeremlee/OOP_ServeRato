@@ -6,6 +6,7 @@ import javafx.scene.layout.StackPane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class Pasta {
     StackPane PastaStack;
@@ -19,6 +20,7 @@ public class Pasta {
         PastaStack.getChildren().add(new ImageView(pb.Topping));
 
         key = HashMe(pb.SauceType, pb.BaseType, pb.ToppingType);
+        System.out.println(getKey());
     }
 
     public Pasta(){
@@ -54,10 +56,11 @@ public class Pasta {
         int SauceType;
         int ToppingType;
         int BaseType;
-        int maxHeight = 200;
+        int maxHeight;
 
-        public PastaBuilder() throws FileNotFoundException {
-            Plate = new Image(getClass().getResource("/Images/plate.png").toExternalForm(), maxHeight, maxHeight, false, false);
+        public PastaBuilder(int maxHeight) throws FileNotFoundException {
+            this.maxHeight = maxHeight;
+            Plate = new Image(String.valueOf(getClass().getResource("/Images/plate.png")), maxHeight, maxHeight, false, false);
         }
 
         public PastaBuilder setBase(int type) throws FileNotFoundException {
