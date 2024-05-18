@@ -62,6 +62,7 @@ public class GameController extends Controller{
         }
 
         customerContainer.getChildren().add(customerPatienceBar);
+        customerContainer.getChildren().add(customer.getOrder());
         customerContainer.getChildren().add(img);
 
         customerSatisfied.setOnAction(new EventHandler<ActionEvent>(){ //proof of concept: customer can be removed anytime

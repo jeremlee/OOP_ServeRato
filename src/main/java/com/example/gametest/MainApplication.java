@@ -1,7 +1,6 @@
 package com.example.gametest;
 
 import com.example.utils.MySQLConnection;
-import com.example.utils.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
