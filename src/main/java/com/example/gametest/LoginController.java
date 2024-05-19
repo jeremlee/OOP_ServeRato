@@ -25,7 +25,7 @@ public class LoginController extends Controller {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        //wala ra
     }
 
     @FXML
@@ -58,12 +58,11 @@ public class LoginController extends Controller {
                     USER.setUid(resultSet.getInt("uid"));
                     switchScene("game.fxml");
                 } else{
-                    lblErrorMsg.setText("Incorrect username/password!");
+                    lblErrorMsg.setText("The password is incorrect");
                 }
             } else{
                 lblErrorMsg.setText("No such user found!");
             }
-            lblErrorMsg.setText("");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

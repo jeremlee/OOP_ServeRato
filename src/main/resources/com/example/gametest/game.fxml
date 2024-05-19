@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gametest.GameController">
+<AnchorPane fx:id="pnMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1193.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gametest.GameController">
    <children>
       <ImageView fitHeight="737.0" fitWidth="887.0" layoutX="272.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,9 +26,16 @@
         </rowConstraints>
       </GridPane>
       <Pane fx:id="pnFood" layoutX="273.0" layoutY="345.0" prefHeight="87.0" prefWidth="887.0" />
+      <Button fx:id="btnOpenMenu" layoutX="295.0" layoutY="31.0" mnemonicParsing="false" onAction="#openMenu" text="Menu" />
       <ImageView fx:id="btnFood1" fitHeight="60.0" fitWidth="54.0" layoutX="279.0" layoutY="449.0" onMouseClicked="#addSpaghetti" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Images/food.png" />
          </image></ImageView>
+      <AnchorPane fx:id="pnMenu" layoutX="272.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="887.0">
+         <children>
+            <Button fx:id="btnToMain" layoutX="405.0" layoutY="189.0" mnemonicParsing="false" onAction="#goMainMenu" text="Main Menu" />
+            <Button fx:id="btnCloseMenu" layoutX="793.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeMenu" text="Close Menu" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

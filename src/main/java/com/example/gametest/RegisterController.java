@@ -24,7 +24,7 @@ public class RegisterController extends Controller{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        //wala ra
     }
     @FXML
     public void onRegisterClick(){

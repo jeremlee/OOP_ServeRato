@@ -12,10 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
 //import javafx.scene.media.Media;
 //import javafx.scene.media.MediaPlayer;
@@ -31,6 +28,11 @@ public class GameController extends Controller{
     public GridPane CustomerBox;
     public Pane pnFood;
     public ImageView btnFood1;
+    public Button btnToMain;
+    public AnchorPane pnMenu;
+    public Button btnOpenMenu;
+    public Button btnCloseMenu;
+    public AnchorPane pnMain;
     private Timeline timeline;
     //private MediaPlayer mediaPlayer;
 
@@ -149,8 +151,21 @@ public class GameController extends Controller{
     @Override
     public void switchScene(String fxmlFile) {
         timeline.stop();
-        //mediaPlayer.stop();
+        super.switchScene(fxmlFile);
     }
+
+    public void openMenu(){
+        pnMenu.setVisible(true);
+    }
+    
+    public void closeMenu(){
+        pnMenu.setVisible(false);
+    }
+
+    public void goMainMenu(){
+        switchScene("main_menu.fxml");
+    }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -159,6 +174,8 @@ public class GameController extends Controller{
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();*/
+        pnMenu.setStyle("-fx-background-color: #000000;");
+        pnMenu.setVisible(false);
         timeline = new Timeline(new KeyFrame(Duration.seconds(new Random().nextDouble(7)+3), event -> {
             try {
                 AddCustomer();
