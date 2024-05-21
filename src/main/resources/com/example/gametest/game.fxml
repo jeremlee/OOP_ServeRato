@@ -31,13 +31,7 @@
          <image>
             <Image url="@../../../Images/food.png" />
          </image></ImageView>
-      <AnchorPane fx:id="pnMenu" layoutX="272.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="887.0">
-         <children>
-            <Button fx:id="btnToMain" layoutX="405.0" layoutY="189.0" mnemonicParsing="false" onAction="#goMainMenu" text="Main Menu" />
-            <Button fx:id="btnCloseMenu" layoutX="793.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeMenu" text="Close Menu" />
-         </children>
-      </AnchorPane>
-      <GridPane fx:id="IngredientBox" layoutX="273.0" layoutY="451.0" prefHeight="184.0" prefWidth="186.0">
+      <GridPane fx:id="IngredientBox" layoutX="273.0" layoutY="451.0" onMouseClicked="#setIngredient" prefHeight="184.0" prefWidth="186.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -89,6 +83,12 @@
                </image></ImageView>
          </children>
       </GridPane>
-      <FlowPane layoutX="485.0" layoutY="459.0" onMouseClicked="#ProcessIngredient" prefHeight="140.0" prefWidth="162.0" />
+      <FlowPane fx:id="IPBox" layoutX="485.0" layoutY="459.0" onMouseClicked="#ProcessIngredient" prefHeight="140.0" prefWidth="162.0" />
+      <AnchorPane fx:id="pnMenu" layoutX="272.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="887.0">
+         <children>
+            <Button fx:id="btnToMain" layoutX="405.0" layoutY="189.0" mnemonicParsing="false" onAction="#goMainMenu" text="Main Menu" />
+            <Button fx:id="btnCloseMenu" layoutX="793.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeMenu" text="Close Menu" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

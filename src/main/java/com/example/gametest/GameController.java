@@ -12,7 +12,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 //import javafx.scene.media.Media;
@@ -28,6 +30,7 @@ public class GameController extends Controller{
     public Button newCustomer;
     public GridPane CustomerBox;
     public GridPane IngredientBox;
+    public FlowPane IPBox;
     public Pane pnFood;
     public ImageView btnFood1;
     public Button btnToMain;
@@ -169,34 +172,68 @@ public class GameController extends Controller{
         switchScene("main_menu.fxml");
     }
 
-    public void setIngredient(){
+    public void setIngredient(MouseEvent e){
+        int row = -1;
+        int col = -1;
+        int cmp = 0;
+        System.out.println("Test: " + e.getSceneX() + " " + e.getSceneY());
         for( Node node: IngredientBox.getChildren()) {
-
             if( node instanceof ImageView) {
-                if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY())) {
-                    System.out.println( "Node: " + node + " at " + GridPane.getRowIndex( node) + "/" + GridPane.getColumnIndex( node));
+                System.out.println("Node: "+ (node.getLayoutX() + IngredientBox.getLayoutX()) + " " +  (node.getLayoutY() + IngredientBox.getLayoutY()));
+                if((node.getLayoutX() + IngredientBox.getLayoutX()) < e.getSceneX() && cmp == 0){
+                    col++;
+                }
+
+                cmp++;
+                cmp%=3;
+            }
+        }
+
+        for( Node node: IngredientBox.getChildren()) {
+            if( node instanceof ImageView) {
+                System.out.println("Node: "+ (node.getLayoutX() + IngredientBox.getLayoutX()) + " " +  (node.getLayoutY() + IngredientBox.getLayoutY()));
+                if((node.getLayoutY() + IngredientBox.getLayoutY()) < e.getSceneY() && row<2){
+                    row++;
+                }else{
+                    break;
                 }
             }
         }
+
+        ImageView reference = (ImageView) IngredientBox.getChildren().get((col*3)+row);
+        ImageView ing = new ImageView();
+        ing.setImage(reference.getImage());
+        ing.setFitHeight(50);
+        ing.setFitWidth(50);
+        switch(col){
+            case 0:
+                currentIngredient.setBase(row);
+                break;
+            case 1:
+                currentIngredient.setSauce(row);
+                break;
+            case 2:
+                currentIngredient.setTopping(row);
+                break;
+        }
+        IPBox.getChildren().add(ing);
     }
 
     public void setBase(){
         currentIngredient.setBase(0);
-        System.out.println("Base set");
     }
 
     public void setSauce(){
         currentIngredient.setSauce(0);
-        System.out.println("Base set");
     }
 
     public void setTopping(){
         currentIngredient.setTopping(0);//prototype design
-        System.out.println("Base set");
     }
 
 
     public void ProcessIngredient() throws FileNotFoundException{
+        IPBox.getChildren().removeAll();
         if(currentIngredient.isEmpty()){
             System.out.println("No Ingredients!");
             return;
@@ -206,7 +243,6 @@ public class GameController extends Controller{
         moveTimeline(spag);
         currentIngredient.makeEmpty();
         System.out.println("added stuff");
-
     }
     
 
