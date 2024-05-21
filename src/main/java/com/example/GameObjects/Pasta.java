@@ -63,6 +63,19 @@ public class Pasta {
             Plate = new Image(String.valueOf(getClass().getResource("/Images/plate.png")), maxHeight, maxHeight, false, false);
         }
 
+        public PastaBuilder(int maxHeight, Ingredient i){
+            this.maxHeight = maxHeight;
+            Plate = new Image(String.valueOf(getClass().getResource("/Images/plate.png")), maxHeight, maxHeight, false, false);
+
+            try{
+                this.setBase(i.getBase());
+                this.setSauce(i.getSauce());
+                this.setTopping(i.getTopping());
+            }catch(FileNotFoundException e){
+                e.printStackTrace();
+            }
+        }
+
         public PastaBuilder setBase(int type) throws FileNotFoundException {
             switch (type) {
                 case 0:

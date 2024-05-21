@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
-public class MainApplication extends Application {
+public class
+MainApplication extends Application {
     public static float HEIGHT, WIDTH;
     static Stage myOnlyStage;
     @Override

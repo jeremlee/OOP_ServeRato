@@ -1,5 +1,6 @@
 package com.example.gametest;
 
+import com.example.GameObjects.Ingredient;
 import com.example.GameObjects.Pasta;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -38,6 +39,7 @@ public class GameController extends Controller{
 
     private CustomerHandler customerHandler = new CustomerHandler();
     private Timer[] customerTimer = new Timer[customerHandler.capacity]; //need to keep track of timers to cancel timers
+    private Ingredient currentIngredient = new Ingredient();
 
     //this method will be called by application when creating new customer
     public void AddCustomer() throws FileNotFoundException {
@@ -164,6 +166,39 @@ public class GameController extends Controller{
 
     public void goMainMenu(){
         switchScene("main_menu.fxml");
+    }
+
+    public void setIngredient(){
+
+    }
+
+    public void setBase(){
+        currentIngredient.setBase(0);
+        System.out.println("Base set");
+    }
+
+    public void setSauce(){
+        currentIngredient.setSauce(0);
+        System.out.println("Base set");
+    }
+
+    public void setTopping(){
+        currentIngredient.setTopping(0);//prototype design
+        System.out.println("Base set");
+    }
+
+
+    public void ProcessIngredient() throws FileNotFoundException{
+        if(currentIngredient.isEmpty()){
+            System.out.println("No Ingredients!");
+            return;
+        }
+        Pasta spag = new Pasta.PastaBuilder(50).setBase(currentIngredient.getBase()).setSauce(currentIngredient.getSauce()).setTopping(currentIngredient.getTopping()).build();;
+        pnFood.getChildren().add(spag.getPastaStack());
+        moveTimeline(spag);
+        currentIngredient.makeEmpty();
+        System.out.println("added stuff");
+
     }
     
 
