@@ -27,6 +27,7 @@ public class GameController extends Controller{
 
     public Button newCustomer;
     public GridPane CustomerBox;
+    public GridPane IngredientBox;
     public Pane pnFood;
     public ImageView btnFood1;
     public Button btnToMain;
@@ -65,9 +66,9 @@ public class GameController extends Controller{
             img.getProperties().put("CustomerType","Serato");
         }
 
-        customerContainer.getChildren().add(customerPatienceBar);
         customerContainer.getChildren().add(customer.getOrder());
         customerContainer.getChildren().add(img);
+        customerContainer.getChildren().add(customerPatienceBar);
 
         customerSatisfied.setOnAction(new EventHandler<ActionEvent>(){ //proof of concept: customer can be removed anytime
             public void handle(ActionEvent actionEvent) {
@@ -89,7 +90,7 @@ public class GameController extends Controller{
             public void run()
             {
                 double PatientValue = customerPatienceBar.getProgress();
-                double CustomerPatience = 0.1;
+                double CustomerPatience = customer.Patience * 0.1;
                 if(PatientValue > 0.0){
                     double setValue = 0;
                     if(PatientValue-CustomerPatience >= 0.0){ //to handle possible negative number
@@ -169,7 +170,14 @@ public class GameController extends Controller{
     }
 
     public void setIngredient(){
+        for( Node node: IngredientBox.getChildren()) {
 
+            if( node instanceof ImageView) {
+                if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY())) {
+                    System.out.println( "Node: " + node + " at " + GridPane.getRowIndex( node) + "/" + GridPane.getColumnIndex( node));
+                }
+            }
+        }
     }
 
     public void setBase(){
