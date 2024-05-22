@@ -24,22 +24,17 @@ public class LoginController extends Controller {
     public Label lblToRegister;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //wala ra
-    }
-
+    public void initialize(URL url, ResourceBundle resourceBundle) {}//wala ra
     @FXML
     public void onLoginClick(){
         lblErrorMsg.setText("");
         readData(txtfUsername.getText(),txtfPassword.getText());
     }
-
     public void onLoginEnter(KeyEvent event){
         if(event.getCode() == KeyCode.ENTER){
             readData(txtfUsername.getText(),txtfPassword.getText());
         }
     }
-
     public void readData(String name, String password){
         if(name.isBlank() || password.isBlank()){
             lblErrorMsg.setText("Please fill up the fields.");
@@ -56,7 +51,7 @@ public class LoginController extends Controller {
                     USER.setUsername(resultSet.getString("username"));
                     USER.setPassword(resultSet.getString("password"));
                     USER.setUid(resultSet.getInt("uid"));
-                    switchScene("game.fxml");
+                    switchScene("main_menu.fxml");
                 } else{
                     lblErrorMsg.setText("The password is incorrect");
                 }

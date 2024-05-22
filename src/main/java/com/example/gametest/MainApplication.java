@@ -21,14 +21,24 @@ MainApplication extends Application {
         myOnlyStage = stage;
         myOnlyStage.setWidth(1200);
         myOnlyStage.setHeight(800);
-        String createStatement = "CREATE TABLE IF NOT EXISTS tbluser ("
+        String createTblUser = "CREATE TABLE IF NOT EXISTS tbluser ("
                 + "uid INT AUTO_INCREMENT PRIMARY KEY,"
                 + "username VARCHAR(255) NOT NULL,"
                 + "password VARCHAR(255) NOT NULL"
                 + ")";
+        String createTblGame = "CREATE TABLE IF NOT EXISTS tblgame (" +
+                "game_id INT NOT NULL AUTO_INCREMENT, " +
+                "uid INT NOT NULL, " +
+                "score INT NOT NULL, " +
+                "level INT NOT NULL DEFAULT '1', " +
+                "PRIMARY KEY (game_id), " +
+                "FOREIGN KEY (uid) REFERENCES tbluser(uid) " +
+                "ON UPDATE CASCADE ON DELETE CASCADE" +
+                ");";
         try(Connection conn = MySQLConnection.getConnection();
             Statement statement = conn.createStatement()){
-            statement.executeUpdate(createStatement);
+            statement.executeUpdate(createTblUser);
+            statement.executeUpdate(createTblGame);
         }catch(SQLException e){
             e.printStackTrace();
         }

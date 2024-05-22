@@ -6,19 +6,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainMenuController extends Controller{
-    public Button btnLogin;
-    public Button btnRegister;
+    public Button btnPlay;
+    public Button btnLeaderboards;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //wala ra so far
     }
-
-    public void onLoginClick(){
-        switchScene("login.fxml");
+    public void onPlayClick(){
+        switchScene("levels.fxml");
     }
-    public void onRegisterClick(){
-        switchScene("register.fxml");
+    public void onLeaderboardsClick(){
+
     }
 
 }

@@ -14,7 +14,7 @@ public class SplashScreenController extends Controller{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         PauseTransition pause = new PauseTransition(Duration.seconds(3));
-        pause.setOnFinished(event -> switchScene("main_menu.fxml"));
+        pause.setOnFinished(event -> switchScene("login.fxml"));
         pause.play();
     }
 }

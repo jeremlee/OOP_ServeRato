@@ -9,8 +9,8 @@ import java.util.Random;
 
 
 public class CustomerHandler {
-    static ArrayList<Customer> Customers;
-    static boolean[] isEmpty;
+    ArrayList<Customer> Customers;
+    boolean[] isEmpty;
     int id = 0; //para unique ang customername...idk
     int recentSeat;
     int capacity;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gametest.LevelsController">
+   <children>
+      <HBox alignment="CENTER" layoutX="174.0" layoutY="91.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnLvl1" mnemonicParsing="false" onAction="#onLvl1Click" text="1" />
+            <Button fx:id="btnLvl2" mnemonicParsing="false" onAction="#onLvl2Click" text="2" />
+            <Button fx:id="btnLvl3" mnemonicParsing="false" onAction="#onLvl3Click" text="3" />
+            <Button fx:id="btnLvl4" mnemonicParsing="false" onAction="#onLvl4Click" text="4" />
+            <Button fx:id="btnLvl5" lineSpacing="10.0" mnemonicParsing="false" onAction="#onLvl5Click" text="5" />
+         </children>
+      </HBox>
+      <Label layoutX="260.0" layoutY="65.0" text="Levels" />
+   </children>
+</AnchorPane>
