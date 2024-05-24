@@ -6,7 +6,7 @@
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gametest.MainMenuController">
    <children>
       <Label layoutX="539.0" layoutY="176.0" prefHeight="114.0" prefWidth="71.0" text="Main Menu" />
-      <VBox layoutX="539.0" layoutY="352.0" prefHeight="78.0" prefWidth="71.0">
+      <VBox layoutX="539.0" layoutY="352.0" prefHeight="258.0" prefWidth="247.0" spacing="10.0">
          <children>
             <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#onPlayClick" text="Play" />
             <Button fx:id="btnLeaderboards" mnemonicParsing="false" text="Leaderboards" />

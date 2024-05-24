@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -19,8 +20,9 @@ import java.util.ResourceBundle;
 public class RegisterController extends Controller{
     public PasswordField txtfPassword;
     public TextField txtfUsername;
-    public Button btnRegister;
     public Label lblErrorMsg;
+    public ImageView imgRegister;
+    public ImageView imgLogin;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
