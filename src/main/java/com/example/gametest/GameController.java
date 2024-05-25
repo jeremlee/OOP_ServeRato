@@ -112,6 +112,8 @@ public class GameController extends Controller{
                     lblStatusMsg.setText("Cool and normal!");
                 }
                 pnGameOver.setVisible(true);
+                pnFood.getChildren().clear();
+                CustomerBox.getChildren().clear();
                 timeline.stop();
             }
         }));
