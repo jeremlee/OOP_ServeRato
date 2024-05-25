@@ -6,5 +6,6 @@ module com.example.gametest {
 
 
     opens com.example.gametest to javafx.fxml;
+    opens com.example.utils to javafx.base;
     exports com.example.gametest;
 }

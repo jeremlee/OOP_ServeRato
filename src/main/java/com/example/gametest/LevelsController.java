@@ -26,6 +26,7 @@ public class LevelsController extends Controller {
     public Label lblTargetProfit;
     public Label lblDesc;
     public ImageView imgPlay;
+    public ImageView imgBack;
     private HashMap<Integer,Integer> lvlTargetProfit;
     private HashMap<Integer,String> lvlDescription;
 
@@ -88,4 +89,7 @@ public class LevelsController extends Controller {
     public void onPlayClick(){toLoadingScreen("game.fxml");}
     public void onPlayHoverIn(){hoverIn(imgPlay);}
     public void onPlayHoverOut(){ hoverOut(imgPlay); }
+    public void back(){ toLoadingScreen("main_menu.fxml");}
+    public void onBackHoverIn(){hoverIn(imgBack);}
+    public void onBackHoverOut(){hoverOut(imgBack);}
 }

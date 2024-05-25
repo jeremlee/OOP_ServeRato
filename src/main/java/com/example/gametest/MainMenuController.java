@@ -23,12 +23,8 @@ public class MainMenuController extends Controller{
     public void onPlayClick(){
         toLoadingScreen("levels.fxml");
     }
-    public void onLeaderboardsClick(){
-
-    }
-    public void onExitClick(){
-        Platform.exit();
-    }
+    public void onLeaderboardsClick(){ toLoadingScreen("leaderboards.fxml");}
+    public void onExitClick(){Platform.exit();}
     public void onLogoutClick() { toLoadingScreen("login.fxml"); }
 
     @FXML

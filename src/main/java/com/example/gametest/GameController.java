@@ -108,7 +108,7 @@ public class GameController extends Controller{
                     lblStatus.setText("YOU FAILED!");
                     lblStatusMsg.setText("Not cool and normal! Please shift to IT!");
                 } else{
-                    lblStatus.setText("YOU LIVE TO SEE ANOTHER DAY!");
+                    lblStatus.setText("YOU PASSED!");
                     lblStatusMsg.setText("Cool and normal!");
                 }
                 pnGameOver.setVisible(true);
@@ -130,7 +130,6 @@ public class GameController extends Controller{
         ImageView img = new ImageView(customer.image);
         StackPane order = customer.getOrder();
         customerContainer.getChildren().addAll(order, img, customerPatienceBar);
-        //have some function to make patience decrease faster based on customer patience
         int startDelay = 5000; // delay for 0 sec.
         int period = 1000; // repeat every sec.
         Timer timer = new Timer();
@@ -138,7 +137,6 @@ public class GameController extends Controller{
             public void run() {
                 double PatientValue = customerPatienceBar.getProgress();
                 double CustomerPatience = customer.Patience * LevelSpeedMap.getMap().get(LevelsController.LEVEL);
-                //customer patience is based on level
                 if(PatientValue > 0.0){
                     double setValue = 0;
                     if(PatientValue-CustomerPatience >= 0.0){ //to handle possible negative number
@@ -168,20 +166,12 @@ public class GameController extends Controller{
         customerTimer[columnIndex].cancel();
     }
 
-    public void addSpaghetti() throws FileNotFoundException {
-        Pasta spag = new Pasta.PastaBuilder(50).setBase(1).setSauce(1).setTopping(1).build();
-        pnFood.getChildren().add(spag.getPastaStack());
-        moveTimeline(spag);
-    }
-
     private void moveTimeline(Pasta p) {
         int seatsize = (int) (pnFood.getWidth() / customerHandler.capacity);
         StackPane curSpag = p.getPastaStack();
         Timeline spaghettiTimeline = new Timeline(new KeyFrame(Duration.millis(10), e -> {
             curSpag.setLayoutX(curSpag.getLayoutX() + 1);
-            if (curSpag.getBoundsInParent().getMaxX() >= pnFood.getWidth()) {
-                curSpag.setLayoutX(0);
-            }
+            if (curSpag.getBoundsInParent().getMaxX() >= pnFood.getWidth()) curSpag.setLayoutX(0);
             int i = (int) curSpag.getLayoutX()/seatsize;
             if(!customerHandler.isEmpty[i] && (customerHandler.getCustomerAtSeat(i).getKey() == p.getKey())){ //I need food id && (customerHandler.getCustomerAtSeat(i).getKey() == )
                 pnFood.getChildren().remove(curSpag);
@@ -201,7 +191,12 @@ public class GameController extends Controller{
     }
     public void openMenu(){pnMenu.setVisible(true);}
     public void onCloseMenu(){pnMenu.setVisible(false);}
-    public void goMainMenu(){switchScene("main_menu.fxml");}
+    public void onMenuHoverIn(){hoverIn(imgMenu);}
+    public void onMenuHoverOut(){hoverOut(imgMenu);}
+    public void onEndGameMenuHoverIn(){hoverIn(imgEndGameExit);}
+    public void onEndGameMenuHoverOut(){hoverOut(imgEndGameExit);}
+    public void onCloseMenuHoverIn(){hoverIn(imgCloseMenu);}
+    public void onCloseMenuHoverOut(){hoverOut(imgCloseMenu);}
     public void setIngredient(MouseEvent e){
         int row = -1;
         int col = -1;
@@ -210,15 +205,13 @@ public class GameController extends Controller{
         for(Node node: IngredientBox.getChildren()) {
             if(node instanceof ImageView) {
                 System.out.println("Node: "+ (node.getLayoutX() + IngredientBox.getLayoutX()) + " " +  (node.getLayoutY() + IngredientBox.getLayoutY()));
-                if((node.getLayoutX() + IngredientBox.getLayoutX()) < e.getSceneX() && cmp == 0){
-                    col++;
-                }
+                if((node.getLayoutX() + IngredientBox.getLayoutX()) < e.getSceneX() && cmp == 0) col++;
                 cmp++;
                 cmp%=3;
             }
         }
         for(Node node: IngredientBox.getChildren()) {
-            if( node instanceof ImageView) {
+            if(node instanceof ImageView) {
                 System.out.println("Node: "+ (node.getLayoutX() + IngredientBox.getLayoutX()) + " " +  (node.getLayoutY() + IngredientBox.getLayoutY()));
                 if((node.getLayoutY() + IngredientBox.getLayoutY()) < e.getSceneY() && row<2){
                     row++;
@@ -249,10 +242,7 @@ public class GameController extends Controller{
     public void setSauce(){ currentIngredient.setSauce(0);}
     public void setTopping(){ currentIngredient.setTopping(0);}//prototype design
     public void ProcessIngredient() throws FileNotFoundException{
-        if(currentIngredient.isEmpty()){
-            System.out.println("No Ingredients!");
-            return;
-        }
+        if(currentIngredient.isEmpty()) return; //no ingredients
         Pasta spag = new Pasta.PastaBuilder(50).setBase(currentIngredient.getBase()).setSauce(currentIngredient.getSauce()).setTopping(currentIngredient.getTopping()).build();
         pnFood.getChildren().add(spag.getPastaStack());
         moveTimeline(spag);
@@ -264,7 +254,6 @@ public class GameController extends Controller{
         score+=200;
         txtScore.setText(score.toString());
     }
-    public void endGame(){
-        toLoadingScreen("main_menu.fxml");
-    }
+    public void endGame(){toLoadingScreen("main_menu.fxml");}
+
 }

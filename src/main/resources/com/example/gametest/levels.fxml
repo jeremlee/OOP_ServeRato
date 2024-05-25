@@ -72,5 +72,10 @@
                </image></ImageView>
          </children>
       </Pane>
+      <ImageView fx:id="imgBack" fitHeight="133.0" fitWidth="136.0" onMouseClicked="#back" onMouseEntered="#onBackHoverIn" onMouseExited="#onBackHoverOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@left.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
