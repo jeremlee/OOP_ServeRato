@@ -37,9 +37,24 @@ public class RegisterController extends Controller{
             insertData(txtfUsername.getText(), txtfPassword.getText());
         }
     }
-
+    @FXML
+    public void onLoginHoverIn(){
+        hoverIn(imgLogin);
+    }
+    @FXML
+    public void onLoginHoverOut(){
+        hoverOut(imgLogin);
+    }
+    @FXML
+    public void onRegisterHoverIn(){
+        hoverIn(imgRegister);
+    }
+    @FXML
+    public void onRegisterHoverOut(){
+        hoverOut(imgRegister);
+    }
     public void toLogin(){
-        switchScene("login.fxml");
+        toLoadingScreen("login.fxml");
     }
     public void insertData(String name, String password){
         if(name.isBlank() || password.isBlank()){
@@ -62,9 +77,7 @@ public class RegisterController extends Controller{
                 statement.setString(1,name);
                 statement.setString(2,password);
                 statement.executeUpdate();
-                lblErrorMsg.setText("Successful registration, please login!");
-                txtfUsername.setText("");
-                txtfPassword.setText("");
+                toLoadingScreen("login.fxml");
             } else{
                 lblErrorMsg.setText("This username is already in use!");
             }

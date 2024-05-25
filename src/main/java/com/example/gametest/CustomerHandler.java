@@ -42,7 +42,7 @@ public class CustomerHandler {
                 newCustomer = new JeremyCustomer(seat);
                 break;
             default:
-                newCustomer = new Customer("Who?",seat,"src/main/resources/Images/lowresOsaker.png",4);
+                newCustomer = new Customer("Who?",seat,"src/main/resources/com/example/gametest/lowresOsaker.png",4);
                 break;
         }
         Customers.add(newCustomer);
@@ -54,14 +54,12 @@ public class CustomerHandler {
 
     public Customer getCustomerAtSeat(int seat){
         Customer seatedCustomer = null;
-
         for(Customer c: Customers){
             if(c.seatNumber == seat){
                 seatedCustomer = c;
                 break;
             }
         }
-
         return seatedCustomer;
     }
 
@@ -85,7 +83,7 @@ public class CustomerHandler {
             seat++;
         }
         isEmpty[seat%capacity] = false;
-        System.out.println("New Cusomter at #" + seat%capacity);
+        System.out.println("New Customer at #" + seat%capacity);
         return seat%capacity;
     }
 

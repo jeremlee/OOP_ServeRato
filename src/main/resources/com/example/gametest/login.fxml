@@ -13,7 +13,23 @@
             <Image url="@login_pic.png" />
          </image>
       </ImageView>
-      <VBox alignment="TOP_CENTER" layoutX="476.0" layoutY="365.0" prefHeight="258.0" prefWidth="249.0" spacing="20.0">
+      <ImageView fx:id="imgRegister" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="607.0" onMouseClicked="#toRegister" onMouseEntered="#onRegisterHoverIn" onMouseExited="#onRegisterHoverOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@signup.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="imgLogin" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="533.0" onMouseClicked="#onLoginClick" onMouseEntered="#onLoginHoverIn" onMouseExited="#onLoginHoverOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@login_button.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <VBox alignment="TOP_CENTER" layoutX="476.0" layoutY="378.0" prefHeight="172.0" prefWidth="249.0" spacing="20.0">
          <effect>
             <DropShadow />
          </effect>
@@ -34,20 +50,15 @@
                </font>
             </Label>
             <PasswordField fx:id="txtfPassword" onKeyPressed="#onLoginEnter" />
-            <ImageView fx:id="imgLogin" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#onLoginClick" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@login_button.png" />
-               </image></ImageView>
-            <ImageView fx:id="imgRegister" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#toRegister" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@signup.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lblErrorMsg" textFill="WHITE">
-               <font>
-                  <Font name="Montserrat Regular" size="18.0" />
-               </font></Label>
          </children></VBox>
+      <Label fx:id="lblErrorMsg" alignment="CENTER" layoutX="513.0" layoutY="731.0" textFill="WHITE">
+         <font>
+            <Font name="Montserrat Regular" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
 
    </children>
 </AnchorPane>

@@ -36,6 +36,18 @@ public class LoginController extends Controller {
             readData(txtfUsername.getText(),txtfPassword.getText());
         }
     }
+    public void onLoginHoverIn(){
+        hoverIn(imgLogin);
+    }
+    public void onLoginHoverOut(){
+        hoverOut(imgLogin);
+    }
+    public void onRegisterHoverIn(){
+        hoverIn(imgRegister);
+    }
+    public void onRegisterHoverOut(){
+        hoverOut(imgRegister);
+    }
     public void readData(String name, String password){
         if(name.isBlank() || password.isBlank()){
             lblErrorMsg.setText("Please fill up the fields.");
@@ -52,7 +64,7 @@ public class LoginController extends Controller {
                     USER.setUsername(resultSet.getString("username"));
                     USER.setPassword(resultSet.getString("password"));
                     USER.setUid(resultSet.getInt("uid"));
-                    switchScene("main_menu.fxml");
+                    toLoadingScreen("main_menu.fxml");
                 } else{
                     lblErrorMsg.setText("The password is incorrect");
                 }
@@ -64,6 +76,6 @@ public class LoginController extends Controller {
         }
     }
     public void toRegister(){
-        switchScene("register.fxml");
+        toLoadingScreen("register.fxml");
     }
 }

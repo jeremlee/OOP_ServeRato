@@ -2,7 +2,7 @@ package com.example.utils;
 
 import java.util.HashMap;
 
-public class LevelMap {
+public class LevelSpeedMap {
     public static final HashMap<Integer, Double> map = new HashMap<>();
     static{
         map.put(1, 0.1);

@@ -1,10 +1,8 @@
 package com.example.gametest;
 
-import com.example.GameObjects.Ingredient;
-import com.example.GameObjects.Pasta;
-import com.example.utils.LevelMap;
+import com.example.utils.LevelProfitMap;
+import com.example.utils.LevelSpeedMap;
 import com.example.utils.MySQLConnection;
-import com.example.utils.User;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -23,10 +21,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Random;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class GameController extends Controller{
     @FXML
@@ -36,13 +31,17 @@ public class GameController extends Controller{
     public FlowPane IPBox;
     public Pane pnFood;
     public ImageView btnFood1;
-    public Button btnToMain;
     public AnchorPane pnMenu;
-    public Button btnOpenMenu;
-    public Button btnCloseMenu;
     public AnchorPane pnMain;
     public Label txtScore;
     public Label timerLabel;
+    public ImageView imgMenu;
+    public Label lblLevel;
+    public ImageView imgCloseMenu;
+    public Label lblStatus;
+    public Label lblStatusMsg;
+    public ImageView imgEndGameExit;
+    public AnchorPane pnGameOver;
     private Timeline timeline;
     private Integer score;
     //private MediaPlayer mediaPlayer;
@@ -51,6 +50,7 @@ public class GameController extends Controller{
     private Ingredient currentIngredient;
     public Timeline mainTimer;
     private final int gameDuration = 60;
+    private int targetScore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,13 +59,18 @@ public class GameController extends Controller{
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();*/
+        HashMap<Integer, Integer> lvlProfitMap = LevelProfitMap.getMap();
+        targetScore = lvlProfitMap.get(LevelsController.LEVEL);
         customerHandler = new CustomerHandler();
         customerTimer = new Timer[customerHandler.capacity];
         currentIngredient = new Ingredient();
         score = 0;
         txtScore.setText("0");
-        pnMenu.setStyle("-fx-background-color: #000000;");
+        lblLevel.setText(LevelsController.LEVEL.toString());
+        lblStatus.setWrapText(true);
+        lblStatusMsg.setWrapText(true);
         pnMenu.setVisible(false);
+        pnGameOver.setVisible(false);
         timeline = new Timeline(new KeyFrame(Duration.seconds(new Random().nextDouble(4) + 1), event -> {
             try {
                 AddCustomer();
@@ -98,7 +103,16 @@ public class GameController extends Controller{
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                Platform.exit();
+                //end game
+                if(score < targetScore){
+                    lblStatus.setText("YOU FAILED!");
+                    lblStatusMsg.setText("Not cool and normal! Please shift to IT!");
+                } else{
+                    lblStatus.setText("YOU LIVE TO SEE ANOTHER DAY!");
+                    lblStatusMsg.setText("Cool and normal!");
+                }
+                pnGameOver.setVisible(true);
+                timeline.stop();
             }
         }));
         mainTimer.setCycleCount(gameDuration);
@@ -121,7 +135,7 @@ public class GameController extends Controller{
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 double PatientValue = customerPatienceBar.getProgress();
-                double CustomerPatience = customer.Patience * LevelMap.getMap().get(LevelsController.LEVEL);
+                double CustomerPatience = customer.Patience * LevelSpeedMap.getMap().get(LevelsController.LEVEL);
                 //customer patience is based on level
                 if(PatientValue > 0.0){
                     double setValue = 0;
@@ -159,7 +173,7 @@ public class GameController extends Controller{
     }
 
     private void moveTimeline(Pasta p) {
-        int seatsize = 147;
+        int seatsize = (int) (pnFood.getWidth() / customerHandler.capacity);
         StackPane curSpag = p.getPastaStack();
         Timeline spaghettiTimeline = new Timeline(new KeyFrame(Duration.millis(10), e -> {
             curSpag.setLayoutX(curSpag.getLayoutX() + 1);
@@ -184,7 +198,7 @@ public class GameController extends Controller{
         super.switchScene(fxmlFile);
     }
     public void openMenu(){pnMenu.setVisible(true);}
-    public void closeMenu(){pnMenu.setVisible(false);}
+    public void onCloseMenu(){pnMenu.setVisible(false);}
     public void goMainMenu(){switchScene("main_menu.fxml");}
     public void setIngredient(MouseEvent e){
         int row = -1;
@@ -248,5 +262,7 @@ public class GameController extends Controller{
         score+=200;
         txtScore.setText(score.toString());
     }
-
+    public void endGame(){
+        toLoadingScreen("main_menu.fxml");
+    }
 }

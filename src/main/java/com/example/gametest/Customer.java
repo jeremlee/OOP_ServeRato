@@ -1,14 +1,10 @@
 package com.example.gametest;
 
-import com.example.GameObjects.Pasta;
-import com.example.GameObjects.PastaRandom;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Random;
 
 public class Customer {
     String name;

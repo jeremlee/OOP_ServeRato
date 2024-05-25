@@ -1,4 +1,4 @@
-package com.example.GameObjects;
+package com.example.gametest;
 
 public class Ingredient {
     int Base;

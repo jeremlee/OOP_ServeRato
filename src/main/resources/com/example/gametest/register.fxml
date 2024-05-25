@@ -6,14 +6,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1199.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gametest.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="802.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gametest.RegisterController">
    <children>
-      <ImageView fitHeight="800.0" fitWidth="1199.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="864.0" fitWidth="1199.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@login_pic.png" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" layoutX="475.0" layoutY="408.0" prefHeight="258.0" prefWidth="249.0" spacing="10.0">
+      <Label fx:id="lblErrorMsg" alignment="CENTER" contentDisplay="CENTER" layoutX="475.0" layoutY="684.0" prefHeight="131.0" prefWidth="250.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Montserrat Regular" size="16.0" />
+         </font>
+         <effect>
+            <DropShadow height="44.39" radius="16.4325" spread="0.39" width="23.34" />
+         </effect>
+      </Label>
+      <VBox alignment="CENTER" layoutX="475.0" layoutY="381.0" prefHeight="156.0" prefWidth="249.0" spacing="20.0">
          <children>
             <Label text="Username">
                <font>
@@ -26,24 +34,26 @@
                </font>
             </Label>
             <PasswordField fx:id="txtfPassword" onKeyPressed="#onRegisterEnter" />
-            <ImageView fx:id="imgRegister" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#onRegisterClick" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@signup.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imgLogin" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#toLogin" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@login_button.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lblErrorMsg" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
          </children>
          <effect>
             <DropShadow />
          </effect>
       </VBox>
+      <ImageView fx:id="imgRegister" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="546.0" onMouseClicked="#onRegisterClick" onMouseEntered="#onRegisterHoverIn" onMouseExited="#onRegisterHoverOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@signup.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="imgLogin" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="618.0" onMouseClicked="#toLogin" onMouseEntered="#onLoginHoverIn" onMouseExited="#onLoginHoverOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@login_button.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
    </children>
 </AnchorPane>

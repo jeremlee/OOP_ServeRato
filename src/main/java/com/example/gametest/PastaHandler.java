@@ -1,7 +1,5 @@
-package com.example.GameObjects;
+package com.example.gametest;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class PastaHandler {
