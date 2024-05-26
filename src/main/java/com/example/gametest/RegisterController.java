@@ -1,8 +1,7 @@
 package com.example.gametest;
 
-import com.example.utils.MySQLConnection;
+import com.example.gametest.utils.MySQLConnection;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -26,7 +25,7 @@ public class RegisterController extends Controller{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //wala ra
+        playMusic("/com/example/gametest/Music/A_Town_further_than_the_Universe-yuhei_komatsu.mp3");
     }
     @FXML
     public void onRegisterClick(){

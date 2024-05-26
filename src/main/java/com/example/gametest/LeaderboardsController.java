@@ -1,7 +1,7 @@
 package com.example.gametest;
 
-import com.example.utils.GameTableData;
-import com.example.utils.MySQLConnection;
+import com.example.gametest.utils.GameTableData;
+import com.example.gametest.utils.MySQLConnection;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -30,6 +30,7 @@ public class LeaderboardsController extends Controller{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        playMusic("/com/example/gametest/Music/A_Town_further_than_the_Universe-yuhei_komatsu.mp3");
         list = FXCollections.observableArrayList();
         cbLvl.getItems().addAll(lvls);
         cbLvl.setOnAction(event -> loadData(cbLvl.getSelectionModel().getSelectedIndex()));

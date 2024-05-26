@@ -58,12 +58,12 @@ public class Pasta {
 
         public PastaBuilder(int maxHeight) throws FileNotFoundException {
             this.maxHeight = maxHeight;
-            Plate = new Image(String.valueOf(getClass().getResource("/com/example/gametest/plate.png")), maxHeight, maxHeight, false, false);
+            Plate = new Image(String.valueOf(getClass().getResource("/com/example/gametest/foods/plate.png")), maxHeight, maxHeight, false, false);
         }
 
         public PastaBuilder(int maxHeight, Ingredient i){
             this.maxHeight = maxHeight;
-            Plate = new Image(String.valueOf(getClass().getResource("/com/example/gametest/plate.png")), maxHeight, maxHeight, false, false);
+            Plate = new Image(String.valueOf(getClass().getResource("/com/example/gametest/foods/plate.png")), maxHeight, maxHeight, false, false);
 
             try{
                 this.setBase(i.getBase());
@@ -77,13 +77,13 @@ public class Pasta {
         public PastaBuilder setBase(int type) throws FileNotFoundException {
             switch (type) {
                 case 0:
-                    this.Base = new Image(getClass().getResource("/com/example/gametest/spag.png").toExternalForm(), maxHeight * 0.8, maxHeight * 0.8, false, false);
+                    this.Base = new Image(getClass().getResource("/com/example/gametest/foods/spag.png").toExternalForm(), maxHeight * 0.8, maxHeight * 0.8, false, false);
                     break;
                 case 1:
-                    this.Base = new Image(getClass().getResource("/com/example/gametest/ravioli.png").toExternalForm(), maxHeight * 0.6, maxHeight * 0.6, false, false);
+                    this.Base = new Image(getClass().getResource("/com/example/gametest/foods/ravioli.png").toExternalForm(), maxHeight * 0.6, maxHeight * 0.6, false, false);
                     break;
                 case 2:
-                    this.Base = new Image(getClass().getResource("/com/example/gametest/feta.png").toExternalForm(), maxHeight * 0.6, maxHeight * 0.6, false, false);
+                    this.Base = new Image(getClass().getResource("/com/example/gametest/foods/feta.png").toExternalForm(), maxHeight * 0.6, maxHeight * 0.6, false, false);
                     break;
             }
             BaseType = type;
@@ -93,13 +93,13 @@ public class Pasta {
         public PastaBuilder setSauce(int type) throws FileNotFoundException {
             switch (type) {
                 case 0:
-                    this.Sauce = new Image(getClass().getResource("/com/example/gametest/banana.png").toExternalForm(), maxHeight * 0.8, maxHeight * 0.8, false, false);
+                    this.Sauce = new Image(getClass().getResource("/com/example/gametest/foods/banana.png").toExternalForm(), maxHeight * 0.8, maxHeight * 0.8, false, false);
                     break;
                 case 1:
-                    this.Sauce = new Image(getClass().getResource("/com/example/gametest/carbonara.png").toExternalForm(), maxHeight * 0.8, maxHeight * 0.8, false, false);
+                    this.Sauce = new Image(getClass().getResource("/com/example/gametest/foods/carbonara.png").toExternalForm(), maxHeight * 0.8, maxHeight * 0.8, false, false);
                     break;
                 case 2:
-                    this.Sauce = new Image(getClass().getResource("/com/example/gametest/tomato.png").toExternalForm(), maxHeight * 0.8, maxHeight * 0.8, false, false);
+                    this.Sauce = new Image(getClass().getResource("/com/example/gametest/foods/tomato.png").toExternalForm(), maxHeight * 0.8, maxHeight * 0.8, false, false);
                     break;
             }
             SauceType = type;
@@ -109,13 +109,13 @@ public class Pasta {
         public PastaBuilder setTopping(int type) {
             switch (type) {
                 case 0:
-                    this.Topping = new Image(getClass().getResource("/com/example/gametest/cheese.png").toExternalForm(), maxHeight * 0.75, maxHeight * 0.75, false, false);
+                    this.Topping = new Image(getClass().getResource("/com/example/gametest/foods/cheese.png").toExternalForm(), maxHeight * 0.75, maxHeight * 0.75, false, false);
                     break;
                 case 1:
-                    this.Topping = new Image(getClass().getResource("/Images/Topping/meatball.png").toExternalForm(), maxHeight * 0.4, maxHeight * 0.4, false, false);
+                    this.Topping = new Image(getClass().getResource("/com/example/gametest/foods/meatball.png").toExternalForm(), maxHeight * 0.4, maxHeight * 0.4, false, false);
                     break;
                 case 2:
-                    this.Topping = new Image(getClass().getResource("/com/example/gametest/pepperoni.png").toExternalForm(), maxHeight * 0.4, maxHeight * 0.4, false, false);
+                    this.Topping = new Image(getClass().getResource("/com/example/gametest/foods/pepperoni.png").toExternalForm(), maxHeight * 0.4, maxHeight * 0.4, false, false);
                     break;
             }
             ToppingType = type;

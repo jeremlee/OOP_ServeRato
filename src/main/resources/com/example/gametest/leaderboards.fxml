@@ -9,9 +9,9 @@
    <children>
       <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@loading_bg.png" />
+            <Image url="@screens/leaderboards_bg.png" />
          </image></ImageView>
-      <TableView fx:id="tblLeaderboard" layoutX="290.0" layoutY="298.0" prefHeight="407.0" prefWidth="619.0">
+      <TableView fx:id="tblLeaderboard" layoutX="290.0" layoutY="319.0" prefHeight="407.0" prefWidth="619.0" stylesheets="@css/leaderboards.css">
         <columns>
             <TableColumn fx:id="colName" prefWidth="214.39993286132812" text="Username" />
             <TableColumn fx:id="colScore" minWidth="3.199951171875" prefWidth="108.800048828125" text="Score" />
@@ -19,14 +19,14 @@
           <TableColumn fx:id="colDate" prefWidth="208.60003662109375" text="Date" />
         </columns>
       </TableView>
-      <ChoiceBox fx:id="cbLvl" layoutX="682.0" layoutY="202.0" prefWidth="150.0">
+      <ChoiceBox fx:id="cbLvl" layoutX="758.0" layoutY="247.0" prefWidth="150.0">
          <effect>
             <DropShadow />
          </effect>
       </ChoiceBox>
       <ImageView fx:id="imgBack" fitHeight="129.0" fitWidth="127.0" layoutX="14.0" onMouseClicked="#back" onMouseEntered="#onBackHoverIn" onMouseExited="#onBackHoverOut" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@left.png" />
+            <Image url="@buttons/left.png" />
          </image>
       </ImageView>
    </children>

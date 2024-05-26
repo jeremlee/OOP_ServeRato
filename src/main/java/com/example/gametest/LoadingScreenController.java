@@ -22,6 +22,7 @@ public class LoadingScreenController extends Controller{
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        playMusic("/com/example/gametest/Music/bgm.mp3");
         timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, (ActionEvent event) -> {
                     hoverIn(img1,30);

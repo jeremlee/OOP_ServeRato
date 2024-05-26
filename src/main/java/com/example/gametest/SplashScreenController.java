@@ -13,6 +13,7 @@ public class SplashScreenController extends Controller{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        playMusic("/com/example/gametest/Music/bgm.mp3");
         PauseTransition pause = new PauseTransition(Duration.seconds(3));
         pause.setOnFinished(event -> switchScene("login.fxml"));
         pause.play();

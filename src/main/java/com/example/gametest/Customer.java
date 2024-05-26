@@ -24,7 +24,6 @@ public class Customer {
         this.seatNumber = seat;
         this.key = key;
         image = new Image(new FileInputStream(imgPath));
-
         Pasta p = new Pasta.PastaBuilder(200).setBase((key/100)-1).setSauce(((key/10)%10)-1).setTopping((key%10)-1).build();
         PastaOrder = p.getPastaStack();
     }

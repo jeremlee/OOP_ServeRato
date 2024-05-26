@@ -1,10 +1,8 @@
 package com.example.gametest;
 
-import com.example.utils.LevelDescriptionMap;
-import com.example.utils.LevelProfitMap;
-import javafx.scene.control.Button;
+import com.example.gametest.utils.LevelDescriptionMap;
+import com.example.gametest.utils.LevelProfitMap;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
@@ -32,6 +30,7 @@ public class LevelsController extends Controller {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        playMusic("/com/example/gametest/Music/A_Town_further_than_the_Universe-yuhei_komatsu.mp3");
         LEVEL = 0;
         lvlTargetProfit = LevelProfitMap.getMap();
         lvlDescription = LevelDescriptionMap.getMap();

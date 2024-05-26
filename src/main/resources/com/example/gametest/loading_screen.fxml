@@ -7,32 +7,32 @@
    <children>
       <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@loading_bg.png" />
+            <Image url="@screens/loading_bg.png" />
          </image>
       </ImageView>
       <ImageView fx:id="img1" fitHeight="150.0" fitWidth="200.0" layoutX="98.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@meatball.png" />
+            <Image url="@screens/meatball.png" />
          </image>
       </ImageView>
       <ImageView fx:id="img2" fitHeight="150.0" fitWidth="200.0" layoutX="321.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@meatball.png" />
+            <Image url="@screens/meatball.png" />
          </image>
       </ImageView>
       <ImageView fx:id="img3" fitHeight="150.0" fitWidth="200.0" layoutX="527.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@meatball.png" />
+            <Image url="@screens/meatball.png" />
          </image>
       </ImageView>
       <ImageView fx:id="img4" fitHeight="150.0" fitWidth="200.0" layoutX="744.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@meatball.png" />
+            <Image url="@screens/meatball.png" />
          </image>
       </ImageView>
       <ImageView fx:id="img5" fitHeight="150.0" fitWidth="200.0" layoutX="968.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@meatball.png" />
+            <Image url="@screens/meatball.png" />
          </image>
       </ImageView>
    </children>

@@ -1,20 +1,21 @@
 package com.example.gametest;
 
-import com.example.utils.LevelProfitMap;
-import com.example.utils.LevelSpeedMap;
-import com.example.utils.MySQLConnection;
+import com.example.gametest.utils.LevelProfitMap;
+import com.example.gametest.utils.LevelSpeedMap;
+import com.example.gametest.utils.MySQLConnection;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -25,12 +26,10 @@ import java.util.*;
 
 public class GameController extends Controller{
     @FXML
-    public Button newCustomer;
     public GridPane CustomerBox;
     public GridPane IngredientBox;
     public FlowPane IPBox;
     public Pane pnFood;
-    public ImageView btnFood1;
     public AnchorPane pnMenu;
     public AnchorPane pnMain;
     public Label txtScore;
@@ -42,9 +41,10 @@ public class GameController extends Controller{
     public Label lblStatusMsg;
     public ImageView imgEndGameExit;
     public AnchorPane pnGameOver;
+    public ImageView imgStopGame;
+    public ImageView imgAgain;
     private Timeline timeline;
     private Integer score;
-    //private MediaPlayer mediaPlayer;
     private CustomerHandler customerHandler;
     private Timer[] customerTimer; //need to keep track of timers to cancel timers
     private Ingredient currentIngredient;
@@ -54,11 +54,7 @@ public class GameController extends Controller{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*String path = "src/main/resources/Music/bgm.mp3";
-        Media sound = new Media(new File(path).toURI().toString());
-        mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();*/
+        playMusic("/com/example/gametest/Music/de_inferno.mp3");
         HashMap<Integer, Integer> lvlProfitMap = LevelProfitMap.getMap();
         targetScore = lvlProfitMap.get(LevelsController.LEVEL);
         customerHandler = new CustomerHandler();
@@ -71,7 +67,7 @@ public class GameController extends Controller{
         lblStatusMsg.setWrapText(true);
         pnMenu.setVisible(false);
         pnGameOver.setVisible(false);
-        timeline = new Timeline(new KeyFrame(Duration.seconds(new Random().nextDouble(4) + 1), event -> {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(new Random().nextDouble(5) + 2), event -> {
             try {
                 AddCustomer();
             } catch (FileNotFoundException e) {
@@ -104,13 +100,17 @@ public class GameController extends Controller{
                     e.printStackTrace();
                 }
                 //end game
+                bgm.stop();
                 if(score < targetScore){
                     lblStatus.setText("YOU FAILED!");
                     lblStatusMsg.setText("Not cool and normal! Please shift to IT!");
+                    playMusic("/com/example/gametest/Music/fail.mp3");
                 } else{
                     lblStatus.setText("YOU PASSED!");
                     lblStatusMsg.setText("Cool and normal!");
+                    playMusic("/com/example/gametest/Music/success.mp3");
                 }
+                bgm.setCycleCount(1);
                 pnGameOver.setVisible(true);
                 pnFood.getChildren().clear();
                 CustomerBox.getChildren().clear();
@@ -170,11 +170,21 @@ public class GameController extends Controller{
         int seatsize = (int) (pnFood.getWidth() / customerHandler.capacity);
         StackPane curSpag = p.getPastaStack();
         Timeline spaghettiTimeline = new Timeline(new KeyFrame(Duration.millis(10), e -> {
-            curSpag.setLayoutX(curSpag.getLayoutX() + 1);
+            curSpag.setLayoutX(curSpag.getLayoutX() + 2);
             if (curSpag.getBoundsInParent().getMaxX() >= pnFood.getWidth()) curSpag.setLayoutX(0);
             int i = (int) curSpag.getLayoutX()/seatsize;
             if(!customerHandler.isEmpty[i] && (customerHandler.getCustomerAtSeat(i).getKey() == p.getKey())){ //I need food id && (customerHandler.getCustomerAtSeat(i).getKey() == )
                 pnFood.getChildren().remove(curSpag);
+                URL mediaURL = getClass().getResource("/com/example/gametest/Music/success.mp3");
+                MediaPlayer sound = new MediaPlayer(new Media(mediaURL.toExternalForm()));
+                sound.setVolume(0.15);
+                sound.setAutoPlay(true);
+                sound.setCycleCount(1);
+                sound.play();
+                sound.setOnEndOfMedia(() -> {
+                    sound.stop();
+                    sound.dispose();
+                });
                 ((Timeline) curSpag.getProperties().get("timeline")).stop();
                 Platform.runLater(() -> RemoveCustomerContainer(i));
                 updateScore();
@@ -197,6 +207,11 @@ public class GameController extends Controller{
     public void onEndGameMenuHoverOut(){hoverOut(imgEndGameExit);}
     public void onCloseMenuHoverIn(){hoverIn(imgCloseMenu);}
     public void onCloseMenuHoverOut(){hoverOut(imgCloseMenu);}
+    public void onStopHoverIn(){hoverIn(imgStopGame);}
+    public void onStopHoverOut(){hoverOut(imgStopGame);}
+    public void playAgain(){toLoadingScreen("game.fxml");}
+    public void onAgainHoverIn(){hoverIn(imgAgain);}
+    public void onAgainHoverOut(){hoverOut(imgAgain);}
     public void setIngredient(MouseEvent e){
         int row = -1;
         int col = -1;

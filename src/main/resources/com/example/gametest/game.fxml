@@ -10,7 +10,7 @@
 <AnchorPane fx:id="pnMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1193.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gametest.GameController">
    <ImageView fitHeight="814.0" fitWidth="1193.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@restaurant.png" />
+         <Image url="@backgrounds/restaurant.png" />
       </image>
    </ImageView>
       <GridPane fx:id="CustomerBox" layoutX="14.0" layoutY="136.0" prefHeight="235.0" prefWidth="1164.0">
@@ -41,56 +41,61 @@
          <children>
             <ImageView fitHeight="70.0" fitWidth="70.0" onMouseClicked="#setBase" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@spag.png" />
+                  <Image url="@foods/spag.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                <image>
-                  <Image url="@ravioli.png" />
+                  <Image url="@foods/ravioli.png" />
                </image></ImageView>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                <image>
-                  <Image url="@feta.png" />
+                  <Image url="@foods/feta.png" />
                </image></ImageView>
             <ImageView fitHeight="150.0" fitWidth="60.0" onMouseClicked="#setSauce" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                <image>
-                  <Image url="@banana.png" />
+                  <Image url="@foods/banana.png" />
                </image></ImageView>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <image>
-                  <Image url="@carbonara.png" />
+                  <Image url="@foods/carbonara.png" />
                </image></ImageView>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <image>
-                  <Image url="@tomato.png" />
+                  <Image url="@foods/tomato.png" />
                </image></ImageView>
             <ImageView fitHeight="70.0" fitWidth="70.0" onMouseClicked="#setTopping" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                <image>
-                  <Image url="@cheese.png" />
+                  <Image url="@foods/cheese.png" />
                </image></ImageView>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <image>
-                  <Image url="@meatball.png" />
+                  <Image url="@screens/meatball.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <image>
-                  <Image url="@pepperoni.png" />
+                  <Image url="@foods/pepperoni.png" />
                </image></ImageView>
          </children>
       </GridPane>
       <FlowPane fx:id="IPBox" layoutX="302.0" layoutY="564.0" onMouseClicked="#ProcessIngredient" prefHeight="200.0" prefWidth="201.0" />
-      <AnchorPane fx:id="pnMenu" layoutX="108.0" layoutY="136.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="975.0">
+      <AnchorPane fx:id="pnMenu" layoutX="109.0" layoutY="84.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="975.0">
       <children>
          <ImageView fitHeight="574.0" fitWidth="861.0" layoutX="57.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@level_details.png" />
+               <Image url="@screens/level_details.png" />
             </image>
          </ImageView>
          <Ellipse fill="#ebc87e" layoutX="399.0" layoutY="386.0" radiusX="119.0" radiusY="82.0" stroke="#ebc87e" strokeType="INSIDE" />
          <ImageView fx:id="imgCloseMenu" fitHeight="117.0" fitWidth="126.0" layoutX="703.0" layoutY="162.0" onMouseClicked="#onCloseMenu" onMouseEntered="#onCloseMenuHoverIn" onMouseExited="#onCloseMenuHoverOut" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@X.png" />
+               <Image url="@buttons/X.png" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="imgStopGame" fitHeight="150.0" fitWidth="200.0" layoutX="388.0" layoutY="346.0" onMouseClicked="#endGame" onMouseEntered="#onStopHoverIn" onMouseExited="#onStopHoverOut" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@buttons/exit.png" />
             </image>
          </ImageView>
       </children></AnchorPane>
@@ -110,7 +115,7 @@
       </effect></Label>
    <ImageView fx:id="imgMenu" fitHeight="86.0" fitWidth="140.0" layoutX="1064.0" layoutY="1.0" onMouseClicked="#openMenu" onMouseEntered="#onMenuHoverIn" onMouseExited="#onMenuHoverOut" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@menu.png" />
+         <Image url="@buttons/menu.png" />
       </image>
    </ImageView>
    <Label fx:id="lblLevel" layoutX="992.0" layoutY="12.0" textFill="#f1d077">
@@ -121,15 +126,15 @@
          <Glow level="1.0" />
       </effect>
    </Label>
-   <AnchorPane fx:id="pnGameOver" layoutX="166.0" layoutY="153.0" prefHeight="574.0" prefWidth="861.0">
+   <AnchorPane fx:id="pnGameOver" layoutX="254.0" layoutY="173.0" prefHeight="574.0" prefWidth="861.0">
       <children>
-         <ImageView fitHeight="574.0" fitWidth="861.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="574.0" fitWidth="861.0" layoutX="-88.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@level_details.png" />
+               <Image url="@screens/level_details.png" />
             </image>
          </ImageView>
-         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebc87e" height="60.0" layoutX="237.0" layoutY="362.0" stroke="#ebc87e" strokeType="INSIDE" width="194.0" />
-         <Label fx:id="lblStatus" alignment="CENTER" layoutX="282.0" layoutY="267.0" prefHeight="39.0" prefWidth="297.0" textFill="#733619">
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebc87e" height="60.0" layoutX="155.0" layoutY="287.0" stroke="#ebc87e" strokeType="INSIDE" width="194.0" />
+         <Label fx:id="lblStatus" alignment="CENTER" layoutX="194.0" layoutY="194.0" prefHeight="39.0" prefWidth="297.0" textFill="#733619">
             <font>
                <Font name="Montserrat Regular" size="32.0" />
             </font>
@@ -137,14 +142,19 @@
                <DropShadow />
             </effect>
          </Label>
-         <Label fx:id="lblStatusMsg" alignment="CENTER" layoutX="176.0" layoutY="414.0" prefHeight="35.0" prefWidth="509.0" textAlignment="CENTER" textFill="#733619">
+         <Label fx:id="lblStatusMsg" alignment="CENTER" layoutX="88.0" layoutY="329.0" prefHeight="35.0" prefWidth="509.0" textAlignment="CENTER" textFill="#733619">
             <font>
                <Font size="24.0" />
             </font>
          </Label>
-         <ImageView fx:id="imgEndGameExit" fitHeight="117.0" fitWidth="113.0" layoutX="647.0" layoutY="163.0" onMouseClicked="#endGame" onMouseEntered="#onEndGameMenuHoverIn" onMouseExited="#onEndGameMenuHoverOut" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="imgEndGameExit" fitHeight="117.0" fitWidth="113.0" layoutX="559.0" layoutY="77.0" onMouseClicked="#endGame" onMouseEntered="#onEndGameMenuHoverIn" onMouseExited="#onEndGameMenuHoverOut" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@X.png" />
+               <Image url="@buttons/X.png" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="imgAgain" fitHeight="150.0" fitWidth="200.0" layoutX="243.0" layoutY="449.0" onMouseClicked="#playAgain" onMouseEntered="#onAgainHoverIn" onMouseExited="#onAgainHoverOut" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@buttons/play_again.png" />
             </image>
          </ImageView>
       </children>
