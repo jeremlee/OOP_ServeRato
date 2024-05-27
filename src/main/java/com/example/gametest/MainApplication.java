@@ -30,6 +30,7 @@ MainApplication extends Application {
                 "uid INT NOT NULL, " +
                 "score INT NOT NULL, " +
                 "level INT NOT NULL DEFAULT '1', " +
+                "time_played DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, " +
                 "PRIMARY KEY (game_id), " +
                 "FOREIGN KEY (uid) REFERENCES tbluser(uid) " +
                 "ON UPDATE CASCADE ON DELETE CASCADE" +
