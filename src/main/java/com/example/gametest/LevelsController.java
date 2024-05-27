@@ -2,6 +2,7 @@ package com.example.gametest;
 
 import com.example.gametest.utils.LevelDescriptionMap;
 import com.example.gametest.utils.LevelProfitMap;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -25,6 +26,7 @@ public class LevelsController extends Controller {
     public Label lblDesc;
     public ImageView imgPlay;
     public ImageView imgBack;
+    public ImageView imgLeaderboards;
     private HashMap<Integer,Integer> lvlTargetProfit;
     private HashMap<Integer,String> lvlDescription;
 
@@ -37,6 +39,11 @@ public class LevelsController extends Controller {
         lblDesc.setWrapText(true);
         pnDesc.setVisible(false);
     }
+    public void onLeaderboardsClick(){ toLoadingScreen("leaderboards.fxml");}
+    @FXML
+    void onLeaderboardsHoverIn(){hoverIn(imgLeaderboards);}
+    @FXML
+    void onLeaderboardsHoverOut(){hoverOut(imgLeaderboards);}
     public void onLvl1Click(){
         LEVEL = 1;
         lblLvl.setText(LEVEL.toString());

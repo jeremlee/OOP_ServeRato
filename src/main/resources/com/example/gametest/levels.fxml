@@ -13,34 +13,44 @@
             <Image url="@screens/levels_screen.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="img1" fitHeight="150.0" fitWidth="200.0" layoutX="119.0" layoutY="333.0" onMouseClicked="#onLvl1Click" onMouseEntered="#on1HoverIn" onMouseExited="#on1HoverOut" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img1" fitHeight="150.0" fitWidth="274.0" layoutX="245.0" layoutY="297.0" onMouseClicked="#onLvl1Click" onMouseEntered="#on1HoverIn" onMouseExited="#on1HoverOut" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@levelsDir/level1.png" />
          </image></ImageView>
-      <ImageView fx:id="img2" fitHeight="150.0" fitWidth="200.0" layoutX="319.0" layoutY="565.0" onMouseClicked="#onLvl2Click" onMouseEntered="#on2HoverIn" onMouseExited="#on2HoverOut" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img2" fitHeight="150.0" fitWidth="200.0" layoutX="389.0" layoutY="495.0" onMouseClicked="#onLvl2Click" onMouseEntered="#on2HoverIn" onMouseExited="#on2HoverOut" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@levelsDir/level2.png" />
          </image></ImageView>
-      <ImageView fx:id="img3" fitHeight="150.0" fitWidth="200.0" layoutX="500.0" layoutY="333.0" onMouseClicked="#onLvl3Click" onMouseEntered="#on3HoverIn" onMouseExited="#on3HoverOut" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img3" fitHeight="150.0" fitWidth="200.0" layoutX="525.0" layoutY="297.0" onMouseClicked="#onLvl3Click" onMouseEntered="#on3HoverIn" onMouseExited="#on3HoverOut" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@levelsDir/level3.png" />
          </image></ImageView>
-      <ImageView fx:id="img4" fitHeight="150.0" fitWidth="200.0" layoutX="700.0" layoutY="565.0" onMouseClicked="#onLvl4Click" onMouseEntered="#on4HoverIn" onMouseExited="#on4HoverOut" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img4" fitHeight="150.0" fitWidth="200.0" layoutX="667.0" layoutY="495.0" onMouseClicked="#onLvl4Click" onMouseEntered="#on4HoverIn" onMouseExited="#on4HoverOut" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@levelsDir/level4.png" />
          </image></ImageView>
-      <ImageView fx:id="img5" fitHeight="150.0" fitWidth="200.0" layoutX="900.0" layoutY="333.0" onMouseClicked="#onLvl5Click" onMouseEntered="#on5HoverIn" onMouseExited="#on5HoverOut" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img5" fitHeight="150.0" fitWidth="200.0" layoutX="809.0" layoutY="297.0" onMouseClicked="#onLvl5Click" onMouseEntered="#on5HoverIn" onMouseExited="#on5HoverOut" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@levelsDir/level5.png" />
          </image></ImageView>
-      <Pane fx:id="pnDesc" layoutX="84.0" layoutY="20.0" prefHeight="626.0" prefWidth="1032.0">
+      <ImageView fx:id="imgBack" fitHeight="133.0" fitWidth="136.0" onMouseClicked="#back" onMouseEntered="#onBackHoverIn" onMouseExited="#onBackHoverOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@buttons/left.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgLeaderboards" fitHeight="150.0" fitWidth="300.0" layoutX="450.0" layoutY="658.0" onMouseClicked="#onLeaderboardsClick" onMouseEntered="#onLeaderboardsHoverIn" onMouseExited="#onLeaderboardsHoverOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@buttons/leaderboards.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="pnDesc" layoutX="84.0" layoutY="19.0" prefHeight="626.0" prefWidth="1032.0">
          <children>
-            <ImageView fitHeight="543.0" fitWidth="897.0" layoutX="124.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="543.0" fitWidth="897.0" layoutX="109.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@screens/level_details.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imgClosePane" fitHeight="109.0" fitWidth="101.0" layoutX="727.0" layoutY="247.0" onMouseClicked="#onDescClose" onMouseEntered="#onDescHoverIn" onMouseExited="#onDescHoverOut" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgClosePane" fitHeight="109.0" fitWidth="101.0" layoutX="725.0" layoutY="221.0" onMouseClicked="#onDescClose" onMouseEntered="#onDescHoverIn" onMouseExited="#onDescHoverOut" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@buttons/X.png" />
                </image>
@@ -53,7 +63,7 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Label fx:id="lblTargetProfit" contentDisplay="CENTER" layoutX="531.0" layoutY="432.0" prefHeight="45.0" prefWidth="242.0" textFill="#733619">
+            <Label fx:id="lblTargetProfit" contentDisplay="CENTER" layoutX="511.0" layoutY="414.0" prefHeight="45.0" prefWidth="242.0" textFill="#733619">
                <font>
                   <Font name="Montserrat Regular" size="36.0" />
                </font>
@@ -61,21 +71,16 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Label fx:id="lblDesc" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="484.0" prefHeight="104.0" prefWidth="478.0" textAlignment="JUSTIFY" textFill="#733619">
+            <Label fx:id="lblDesc" alignment="CENTER" contentDisplay="CENTER" layoutX="280.0" layoutY="469.0" prefHeight="104.0" prefWidth="478.0" textAlignment="JUSTIFY" textFill="#733619">
                <font>
                   <Font name="Montserrat Regular" size="14.0" />
                </font>
             </Label>
-            <ImageView fx:id="imgPlay" fitHeight="150.0" fitWidth="200.0" layoutX="431.0" layoutY="566.0" onMouseClicked="#onPlayClick" onMouseEntered="#onPlayHoverIn" onMouseExited="#onPlayHoverOut" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgPlay" fitHeight="150.0" fitWidth="200.0" layoutX="419.0" layoutY="566.0" onMouseClicked="#onPlayClick" onMouseEntered="#onPlayHoverIn" onMouseExited="#onPlayHoverOut" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@buttons/play.png" />
                </image></ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="imgBack" fitHeight="133.0" fitWidth="136.0" onMouseClicked="#back" onMouseEntered="#onBackHoverIn" onMouseExited="#onBackHoverOut" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@buttons/left.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

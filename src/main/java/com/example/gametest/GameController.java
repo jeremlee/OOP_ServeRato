@@ -43,6 +43,7 @@ public class GameController extends Controller{
     public AnchorPane pnGameOver;
     public ImageView imgStopGame;
     public ImageView imgAgain;
+    public ImageView imgRestart;
     private Timeline timeline;
     private Integer score;
     private CustomerHandler customerHandler;
@@ -212,14 +213,14 @@ public class GameController extends Controller{
     public void playAgain(){toLoadingScreen("game.fxml");}
     public void onAgainHoverIn(){hoverIn(imgAgain);}
     public void onAgainHoverOut(){hoverOut(imgAgain);}
+    public void onRestartHoverIn(){hoverIn(imgRestart);}
+    public void onRestartHoverOut(){hoverOut(imgRestart);}
     public void setIngredient(MouseEvent e){
         int row = -1;
         int col = -1;
         int cmp = 0;
-        System.out.println("Test: " + e.getSceneX() + " " + e.getSceneY());
         for(Node node: IngredientBox.getChildren()) {
             if(node instanceof ImageView) {
-                System.out.println("Node: "+ (node.getLayoutX() + IngredientBox.getLayoutX()) + " " +  (node.getLayoutY() + IngredientBox.getLayoutY()));
                 if((node.getLayoutX() + IngredientBox.getLayoutX()) < e.getSceneX() && cmp == 0) col++;
                 cmp++;
                 cmp%=3;
@@ -227,7 +228,6 @@ public class GameController extends Controller{
         }
         for(Node node: IngredientBox.getChildren()) {
             if(node instanceof ImageView) {
-                System.out.println("Node: "+ (node.getLayoutX() + IngredientBox.getLayoutX()) + " " +  (node.getLayoutY() + IngredientBox.getLayoutY()));
                 if((node.getLayoutY() + IngredientBox.getLayoutY()) < e.getSceneY() && row<2){
                     row++;
                 }else{
@@ -262,7 +262,6 @@ public class GameController extends Controller{
         pnFood.getChildren().add(spag.getPastaStack());
         moveTimeline(spag);
         currentIngredient.makeEmpty();
-        System.out.println("added stuff");
         IPBox.getChildren().clear();
     }
     private void updateScore(){

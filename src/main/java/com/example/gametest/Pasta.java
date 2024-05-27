@@ -18,7 +18,6 @@ public class Pasta {
         PastaStack.getChildren().add(new ImageView(pb.Sauce));
         PastaStack.getChildren().add(new ImageView(pb.Topping));
         key = HashMe(pb.SauceType, pb.BaseType, pb.ToppingType);
-        System.out.println(getKey());
     }
 
     public Pasta(){

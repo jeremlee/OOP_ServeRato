@@ -24,7 +24,6 @@ public class CustomerHandler {
 
     public Customer addCustomer() throws FileNotFoundException { //returns true, if there is still seats. otherwise false
         if(Customers.size() == capacity){
-            System.out.println("Puno na");
             return null;
         }
         Customer newCustomer;
@@ -48,7 +47,6 @@ public class CustomerHandler {
         Customers.add(newCustomer);
         recentSeat = seat;
         id++;
-        printCustomers();
         return newCustomer;
     }
 
@@ -65,33 +63,23 @@ public class CustomerHandler {
 
     public void removeCustomer(int seat){
         for(Customer c : Customers){
-            System.out.println("test");
             if(c.seatNumber == seat){
                 Customers.remove(c);
                 break;
             }
         }
         isEmpty[seat] = true;
-        printCustomers();
     }
 
     public int checkSeat(){
         Random rand = new Random();
         int seat = rand.nextInt(capacity-1);
         while(!isEmpty[seat%capacity]){
-            System.out.println("Checking Seat #" + seat%capacity);
             seat++;
         }
         isEmpty[seat%capacity] = false;
-        System.out.println("New Customer at #" + seat%capacity);
         return seat%capacity;
     }
 
-    public void printCustomers(){
-        System.out.println("All Customers: ");
-        for(Customer c : Customers){
-            System.out.println(c);
-        }
-    }
 }
 
