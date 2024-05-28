@@ -87,7 +87,7 @@
       <effect>
          <Glow level="1.0" />
       </effect></Label>
-      <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="410.0" layoutY="24.0" prefHeight="39.0" prefWidth="369.0" text="Label" textAlignment="CENTER" textFill="#f1d077">
+      <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="410.0" layoutY="24.0" prefHeight="39.0" prefWidth="369.0" text="Label" textAlignment="CENTER" textFill="#f0ce78">
       <font>
          <Font name="Montserrat Regular" size="32.0" />
       </font>
@@ -99,7 +99,7 @@
          <Image url="@buttons/menu.png" />
       </image>
    </ImageView>
-   <Label fx:id="lblLevel" layoutX="992.0" layoutY="12.0" textFill="#f1d077">
+   <Label fx:id="lblLevel" layoutX="995.0" layoutY="3.0" text="1" textFill="#f1d077">
       <font>
          <Font name="Montserrat Regular" size="50.0" />
       </font>
@@ -163,4 +163,12 @@
          </ImageView>
       </children>
    </AnchorPane>
+   <Label fx:id="animatedText" alignment="CENTER" layoutX="469.0" layoutY="6.0" prefHeight="35.0" prefWidth="256.0" text="Cool and normal" textFill="#f0ce78">
+      <font>
+         <Font size="24.0" />
+      </font>
+      <effect>
+         <Glow />
+      </effect>
+   </Label>
    </AnchorPane>

@@ -34,7 +34,7 @@
          <children>
             <ImageView fitHeight="574.0" fitWidth="862.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@screens/quit_game_popup.png" />
+                  <Image url="@screens/quit.png" />
                </image></ImageView>
             <ImageView fx:id="imgYes" fitHeight="121.0" fitWidth="132.0" layoutX="233.0" layoutY="427.0" onMouseClicked="#closeGame" onMouseEntered="#onYesHoverIn" onMouseExited="#onYesHoverOut" pickOnBounds="true" preserveRatio="true">
                <image>

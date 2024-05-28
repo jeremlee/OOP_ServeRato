@@ -44,6 +44,7 @@ public class GameController extends Controller{
     public ImageView imgStopGame;
     public ImageView imgAgain;
     public ImageView imgRestart;
+    public Label animatedText;
     private Timeline timeline;
     private Integer score;
     private CustomerHandler customerHandler;
@@ -52,6 +53,8 @@ public class GameController extends Controller{
     public Timeline mainTimer;
     private final int gameDuration = 60;
     private int targetScore;
+    TextAnimator textAnimator;
+    Thread thread = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,6 +71,7 @@ public class GameController extends Controller{
         lblStatusMsg.setWrapText(true);
         pnMenu.setVisible(false);
         pnGameOver.setVisible(false);
+        textAnimator = new TextAnimator(animatedText,100);
         timeline = new Timeline(new KeyFrame(Duration.seconds(new Random().nextDouble(5) + 2), event -> {
             try {
                 AddCustomer();
@@ -87,7 +91,12 @@ public class GameController extends Controller{
             int minutes = remainingTimeInSeconds / 60;
             int seconds = remainingTimeInSeconds % 60;
             timerLabel.setText(String.format("%02d:%02d", minutes, seconds));
+            if(remainingTimeInSeconds == 10){
+                startAnim();
+            }
             if (remainingTimeInSeconds <= 0) {
+                animatedText.setText("Game over!");
+                stopAnim();
                 try(Connection c = MySQLConnection.getConnection();
                     PreparedStatement statement = c.prepareStatement("INSERT INTO tblgame(uid,score,level) VALUES(?,?,?)"))  {
                     //start of try
@@ -120,6 +129,14 @@ public class GameController extends Controller{
         }));
         mainTimer.setCycleCount(gameDuration);
         mainTimer.play();
+    }
+    public void startAnim() {
+        thread = new Thread(textAnimator);
+        thread.start();
+    }
+
+    public void stopAnim() {
+        thread.interrupt();
     }
     public void AddCustomer() throws FileNotFoundException { //this method will be called by application when creating new customer
         Customer customer = customerHandler.addCustomer();
@@ -267,6 +284,12 @@ public class GameController extends Controller{
     private void updateScore(){
         score+=200;
         txtScore.setText(score.toString());
+    }
+    public void toLoadingScreen(String fxmlFile){
+        if(thread != null) thread.interrupt();
+        mainTimer.stop();
+        timeline.stop();
+        super.toLoadingScreen(fxmlFile);
     }
     public void endGame(){toLoadingScreen("main_menu.fxml");}
 

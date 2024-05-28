@@ -2,8 +2,11 @@ package com.example.gametest;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import org.w3c.dom.events.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +19,7 @@ public class MainMenuController extends Controller{
     public Pane pnExit;
     public ImageView imgYes;
     public ImageView imgNo;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pnExit.setVisible(false);
@@ -56,5 +59,6 @@ public class MainMenuController extends Controller{
     void onNoHoverIn(){hoverIn(imgNo);}
     @FXML
     void onNoHoverOut(){hoverOut(imgNo);}
+
 
 }
